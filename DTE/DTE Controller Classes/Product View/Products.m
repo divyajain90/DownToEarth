@@ -23,14 +23,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    arrProducts= (NSMutableArray*)[self.Products mutableCopy];
     lblCategoryName.text = self.strCategory;
-    arrayProductSelect = [[NSMutableArray alloc]init];
+    arrEditedProducts = [[NSMutableArray alloc] init];
     tblProducts.delegate= self;
     tblProducts.dataSource= self;
+    
     for(int i = 0 ; i < self.Products.count ; i++)
     {
-        [arrayProductSelect addObject:@"0"];
+
+        NSArray * productWeights =self.Products[i][@"ProductWeights"];
+        NSDictionary* prodWeights = [productWeights objectAtIndex:0];
+        NSMutableDictionary *dictEditedProducts = [[NSMutableDictionary alloc] init];
+
+        [dictEditedProducts setObject:prodWeights[@"Weight"] forKey:@"Weight" ];
+        [dictEditedProducts setObject:prodWeights[@"Price"] forKey:@"Price" ];
+        [arrEditedProducts addObject:dictEditedProducts];
+        
     }
+    
     
     [tblProducts reloadData];
 
@@ -49,7 +60,7 @@
 #pragma mark -- UITableViewDatasource
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.Products count];
+    return [arrProducts count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -67,7 +78,7 @@
       
 
     }
-    NSDictionary * product =self.Products[indexPath.row];
+    NSDictionary * product =arrProducts[indexPath.row];
     NSURL* productImageURL = [NSURL URLWithString:product[@"ImageURL"]];
     
     cell.btnAddToCart.tag = indexPath.row;
@@ -75,19 +86,9 @@
     [cell.productImage sd_setImageWithURL:productImageURL placeholderImage:[UIImage imageNamed:@"Placeholder"]];
     
     cell.lblProductName.text = product[@"ProductName"];
-    NSArray * productWeights =product[@"ProductWeights"];
-    NSDictionary* prodWeights = [productWeights objectAtIndex:[[arrayProductSelect objectAtIndex:indexPath.row]intValue]];
+    cell.lblProductPrice.text = [@"₹ " stringByAppendingString:arrEditedProducts[indexPath.row][@"Price"]];
+    cell.lblProductWeight.text = arrEditedProducts[indexPath.row][@"Weight"];
 
-    
-    cell.lblProductPrice.text = [@"₹ " stringByAppendingString:prodWeights[@"Price"]];
-//    if (strWeight== nil) {
-//        strWeight = prodWeights[@"Weight"];
-//
-//    }
-//    else
-    cell.lblProductWeight.text = prodWeights[@"Weight"];
-
-    
     return cell;
     
 }
@@ -101,7 +102,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary * product =self.Products[indexPath.row];
+    NSDictionary * product =arrProducts[indexPath.row];
     [Utility showHUDOnView:self.view];
     dispatch_time_t deferTime = 0.10f;
     dispatch_after(deferTime, dispatch_get_main_queue(), ^{
@@ -165,44 +166,31 @@
         [weightArray addObject:[[productWeights objectAtIndex:i] objectForKey:@"Weight"]];
     }
     
-    
-    [ActionSheetStringPicker showPickerWithTitle:@"WEIGHT"
-                                            rows:weightArray
-                                initialSelection:0
-                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                           [arrayProductSelect replaceObjectAtIndex:selectedIndex withObject:[NSString stringWithFormat:@"%ld",selectedIndex]];
-                                           
-                                           NSArray *indexPathArray = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:sender.tag inSection:0]];
-                                           [tblProducts reloadRowsAtIndexPaths:indexPathArray withRowAnimation:NO];
-                                           
-                                           
-                                       }
-                                     cancelBlock:^(ActionSheetStringPicker *picker) {
-                                         NSLog(@"Block Picker Canceled");
-                                     }
-                                          origin:sender];
   //  ALERT_UnderProcess;
-//    indexRow = sender.tag;
-//    
-//    //the view controller you want to present as popover
-//    FPPopoverTableController *controller = [[FPPopoverTableController alloc] init];
-//    controller.itemsArr = @[@"1",@"2",@"3"];
-//    controller.delegate = self;
-//    
-//    //our popover
-//    popoverWeight = [[FPPopoverController alloc] initWithViewController:controller];
-//    popoverWeight.border = NO;
-//    popoverWeight.tint = FPPopoverGreenTint;
-//
-//    popoverWeight.contentSize = CGSizeMake(130, 150);
-//    //the popover will be presented from the okButton view
-//    [popoverWeight presentPopoverFromView:sender];
-// 
+    indexRow = sender.tag;
+    
+    //the view controller you want to present as popover
+    FPPopoverTableController *controller = [[FPPopoverTableController alloc] init];
+    controller.itemsArr = weightArray;
+    controller.delegate = self;
+    
+    //our popover
+    popoverWeight = [[FPPopoverController alloc] initWithViewController:controller];
+    popoverWeight.border = NO;
+    popoverWeight.tint = FPPopoverGreenTint;
+
+    popoverWeight.contentSize = CGSizeMake(130, 150);
+    //the popover will be presented from the okButton view
+    [popoverWeight presentPopoverFromView:sender];
+ 
 }
 
 -(void)AddToCartAction
 {
-    ALERT_UnderProcess;
+//    ALERT_UnderProcess;
+    
+    
+    
    
 }
 
@@ -212,11 +200,10 @@
 {
     if (popoverWeight) {
         [popoverWeight dismissPopoverAnimated:YES];
-        NSDictionary * product =self.Products[indexRow];
-        NSArray * productWeights =product[@"ProductWeights"];
-        NSMutableDictionary* prodWeights = [productWeights objectAtIndex:0];
-        [prodWeights setValue:item forKey:@"Weight"];
-//        strWeight = item;
+        
+        [arrEditedProducts[indexRow]setValue:item forKey:@"Weight"];
+        [arrEditedProducts[indexRow]setValue:arrProducts[indexRow][@"ProductWeights"][rowNum][@"Price"] forKey:@"Price"];
+
         NSArray *indexPathArray = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:indexRow inSection:0]];
         [tblProducts reloadRowsAtIndexPaths:indexPathArray withRowAnimation:NO];
     }

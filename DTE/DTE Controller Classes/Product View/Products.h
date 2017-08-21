@@ -20,11 +20,13 @@
     __weak IBOutlet UITableView *tblProducts;
     NSString *strWeight;
     NSInteger indexRow;
-    NSMutableArray *arrayProductSelect;
-//    NSMutableDictionary * product;
+//    NSMutableArray *arraySelectedWeight;
+    NSMutableArray *arrEditedProducts;
 
+    NSMutableArray * arrProducts;
 }
-@property(nonatomic, copy) NSArray * Products;
+@property(nonatomic, strong) NSArray * Products;
+
 @property(nonatomic, strong) NSString* strCategory;
 
 - (IBAction)BackAction:(id)sender;

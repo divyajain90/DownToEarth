@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05FCD52E1F4B556B00405EBF /* ShowCart.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FCD52D1F4B556B00405EBF /* ShowCart.m */; };
+		05FCD5371F4B61DE00405EBF /* EditShippingAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FCD5361F4B61DE00405EBF /* EditShippingAddress.m */; };
+		05FCD53A1F4B61FA00405EBF /* SelectShippingAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FCD5391F4B61FA00405EBF /* SelectShippingAddress.m */; };
+		05FCD53D1F4B622000405EBF /* SelectPaymentMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FCD53C1F4B622000405EBF /* SelectPaymentMethod.m */; };
+		05FCD5411F4B6FD800405EBF /* CartItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FCD53F1F4B6FD800405EBF /* CartItemCell.m */; };
+		05FCD5421F4B6FD800405EBF /* CartItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05FCD5401F4B6FD800405EBF /* CartItemCell.xib */; };
+		05FCD5471F4B701200405EBF /* SelectAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FCD5451F4B701200405EBF /* SelectAddressCell.m */; };
+		05FCD5481F4B701200405EBF /* SelectAddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05FCD5461F4B701200405EBF /* SelectAddressCell.xib */; };
 		5A07E9991ECAF7940029E13E /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A07E9551ECAF7940029E13E /* KeychainItemWrapper.m */; };
 		5A07E99A1ECAF7940029E13E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A07E9581ECAF7940029E13E /* MBProgressHUD.m */; };
 		5A07E99B1ECAF7940029E13E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A07E95B1ECAF7940029E13E /* Reachability.m */; };
@@ -49,6 +57,20 @@
 
 /* Begin PBXFileReference section */
 		01E1D0AD087C4BCD8260C994 /* libPods-DTE.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DTE.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		05FCD52C1F4B556B00405EBF /* ShowCart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowCart.h; sourceTree = "<group>"; };
+		05FCD52D1F4B556B00405EBF /* ShowCart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowCart.m; sourceTree = "<group>"; };
+		05FCD5351F4B61DE00405EBF /* EditShippingAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditShippingAddress.h; sourceTree = "<group>"; };
+		05FCD5361F4B61DE00405EBF /* EditShippingAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditShippingAddress.m; sourceTree = "<group>"; };
+		05FCD5381F4B61FA00405EBF /* SelectShippingAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectShippingAddress.h; sourceTree = "<group>"; };
+		05FCD5391F4B61FA00405EBF /* SelectShippingAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectShippingAddress.m; sourceTree = "<group>"; };
+		05FCD53B1F4B622000405EBF /* SelectPaymentMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPaymentMethod.h; sourceTree = "<group>"; };
+		05FCD53C1F4B622000405EBF /* SelectPaymentMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPaymentMethod.m; sourceTree = "<group>"; };
+		05FCD53E1F4B6FD800405EBF /* CartItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartItemCell.h; sourceTree = "<group>"; };
+		05FCD53F1F4B6FD800405EBF /* CartItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartItemCell.m; sourceTree = "<group>"; };
+		05FCD5401F4B6FD800405EBF /* CartItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CartItemCell.xib; sourceTree = "<group>"; };
+		05FCD5441F4B701200405EBF /* SelectAddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectAddressCell.h; sourceTree = "<group>"; };
+		05FCD5451F4B701200405EBF /* SelectAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectAddressCell.m; sourceTree = "<group>"; };
+		05FCD5461F4B701200405EBF /* SelectAddressCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectAddressCell.xib; sourceTree = "<group>"; };
 		12CEF34EF04D6584626B1BC3 /* Pods-DTE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DTE.release.xcconfig"; path = "Pods/Target Support Files/Pods-DTE/Pods-DTE.release.xcconfig"; sourceTree = "<group>"; };
 		1B1AF65264114F595E2B3DC2 /* Pods-DTE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DTE.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DTE/Pods-DTE.debug.xcconfig"; sourceTree = "<group>"; };
 		5A07E9541ECAF7940029E13E /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
@@ -139,6 +161,56 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05FCD5281F4B54ED00405EBF /* Show Cart */ = {
+			isa = PBXGroup;
+			children = (
+				05FCD52C1F4B556B00405EBF /* ShowCart.h */,
+				05FCD52D1F4B556B00405EBF /* ShowCart.m */,
+			);
+			path = "Show Cart";
+			sourceTree = "<group>";
+		};
+		05FCD52F1F4B5AB500405EBF /* Cart Item cell */ = {
+			isa = PBXGroup;
+			children = (
+				05FCD53E1F4B6FD800405EBF /* CartItemCell.h */,
+				05FCD53F1F4B6FD800405EBF /* CartItemCell.m */,
+				05FCD5401F4B6FD800405EBF /* CartItemCell.xib */,
+			);
+			path = "Cart Item cell";
+			sourceTree = "<group>";
+		};
+		05FCD5301F4B618F00405EBF /* Checkout */ = {
+			isa = PBXGroup;
+			children = (
+				05FCD5311F4B618F00405EBF /* Add Shipping Address */,
+			);
+			path = Checkout;
+			sourceTree = "<group>";
+		};
+		05FCD5311F4B618F00405EBF /* Add Shipping Address */ = {
+			isa = PBXGroup;
+			children = (
+				05FCD5351F4B61DE00405EBF /* EditShippingAddress.h */,
+				05FCD5361F4B61DE00405EBF /* EditShippingAddress.m */,
+				05FCD5381F4B61FA00405EBF /* SelectShippingAddress.h */,
+				05FCD5391F4B61FA00405EBF /* SelectShippingAddress.m */,
+				05FCD53B1F4B622000405EBF /* SelectPaymentMethod.h */,
+				05FCD53C1F4B622000405EBF /* SelectPaymentMethod.m */,
+			);
+			path = "Add Shipping Address";
+			sourceTree = "<group>";
+		};
+		05FCD5431F4B6FFC00405EBF /* Select Address Cell */ = {
+			isa = PBXGroup;
+			children = (
+				05FCD5441F4B701200405EBF /* SelectAddressCell.h */,
+				05FCD5451F4B701200405EBF /* SelectAddressCell.m */,
+				05FCD5461F4B701200405EBF /* SelectAddressCell.xib */,
+			);
+			path = "Select Address Cell";
+			sourceTree = "<group>";
+		};
 		593476CDA246D1F1C21FADCF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,6 +280,8 @@
 		5A07E9BE1ECAF7B80029E13E /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				05FCD5431F4B6FFC00405EBF /* Select Address Cell */,
+				05FCD52F1F4B5AB500405EBF /* Cart Item cell */,
 				5A07E9BF1ECAF7B80029E13E /* Home Cell */,
 				5A07E9C31ECAF7B80029E13E /* Product Cell */,
 			);
@@ -300,13 +374,6 @@
 			path = Checkout;
 			sourceTree = "<group>";
 		};
-		5A0FFD951ED5B40400A55BD0 /* Show Cart */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Show Cart";
-			sourceTree = "<group>";
-		};
 		5A0FFD961ED5B70700A55BD0 /* Custom Badge */ = {
 			isa = PBXGroup;
 			children = (
@@ -376,8 +443,9 @@
 		5A1505E31EB790BF0000045A /* DTE Controller Classes */ = {
 			isa = PBXGroup;
 			children = (
+				05FCD5301F4B618F00405EBF /* Checkout */,
+				05FCD5281F4B54ED00405EBF /* Show Cart */,
 				5A0FFD941ED5B40400A55BD0 /* Checkout */,
-				5A0FFD951ED5B40400A55BD0 /* Show Cart */,
 				5A07E9B81ECAF7A10029E13E /* Product Detail */,
 				5A07E9B91ECAF7A10029E13E /* Product View */,
 				5A1505ED1EB880280000045A /* Sign Up */,
@@ -500,10 +568,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05FCD5481F4B701200405EBF /* SelectAddressCell.xib in Resources */,
 				5A1505D61EB77E3C0000045A /* LaunchScreen.storyboard in Resources */,
 				5A07E9C81ECAF7B80029E13E /* HomeCell.xib in Resources */,
 				5A1505D31EB77E3C0000045A /* Assets.xcassets in Resources */,
 				5A07E9CA1ECAF7B80029E13E /* ProductCell.xib in Resources */,
+				05FCD5421F4B6FD800405EBF /* CartItemCell.xib in Resources */,
 				5A1505D11EB77E3C0000045A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -566,12 +636,17 @@
 				5A4C385C1EC04E07003C2DE1 /* User.m in Sources */,
 				5A1505F31EB880840000045A /* Product.m in Sources */,
 				5A0F49461ED22C1E00B3B5C3 /* FPPopoverController.m in Sources */,
+				05FCD53D1F4B622000405EBF /* SelectPaymentMethod.m in Sources */,
 				5A0FFD7C1ED3443D00A55BD0 /* SlideNavigationContorllerAnimatorScaleAndFade.m in Sources */,
+				05FCD5371F4B61DE00405EBF /* EditShippingAddress.m in Sources */,
+				05FCD53A1F4B61FA00405EBF /* SelectShippingAddress.m in Sources */,
 				5A0FFD871ED3444900A55BD0 /* Utility.m in Sources */,
+				05FCD5471F4B701200405EBF /* SelectAddressCell.m in Sources */,
 				5A0FFD8D1ED55EAA00A55BD0 /* BadgeButton.m in Sources */,
 				5A0FFD861ED3444900A55BD0 /* BaseClass.m in Sources */,
 				5A1505C81EB77E3C0000045A /* main.m in Sources */,
 				5A0FFD7D1ED3443D00A55BD0 /* SlideNavigationContorllerAnimatorSlide.m in Sources */,
+				05FCD5411F4B6FD800405EBF /* CartItemCell.m in Sources */,
 				5A0FFD8A1ED46F1000A55BD0 /* Category.m in Sources */,
 				5A1505EC1EB7910D0000045A /* DTEHome.m in Sources */,
 				5A07E99A1ECAF7940029E13E /* MBProgressHUD.m in Sources */,
@@ -582,6 +657,7 @@
 				5A0F49481ED22C1E00B3B5C3 /* FPPopoverView.m in Sources */,
 				5A0FFD9B1ED5B70700A55BD0 /* BadgeStyle.m in Sources */,
 				5A0FFD7F1ED3443D00A55BD0 /* LeftMenuViewController.m in Sources */,
+				05FCD52E1F4B556B00405EBF /* ShowCart.m in Sources */,
 				5A1505E91EB790F50000045A /* DTELogin.m in Sources */,
 				5A0FFD7E1ED3443D00A55BD0 /* SlideNavigationContorllerAnimatorSlideAndFade.m in Sources */,
 				5A07E9BC1ECAF7A10029E13E /* Products.m in Sources */,
