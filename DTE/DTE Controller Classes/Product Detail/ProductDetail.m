@@ -70,35 +70,40 @@ FPPopoverController *popoverWeight;
 
 - (IBAction)QuantityAction:(id)sender {
 //    //the view controller you want to present as popover
-//    FPPopoverTableController *controller = [[FPPopoverTableController alloc] init];
-//    controller.itemsArr = @[@"1",@"2",@"3"];
-//    controller.delegate = self;
-//    
-//    //our popover
-//    popoverQty = [[FPPopoverController alloc] initWithViewController:controller];
-//    popoverQty.border = NO;
-//    popoverQty.tint = FPPopoverWhiteTint;
-//    
-//    //the popover will be presented from the okButton view
-//    [popoverQty presentPopoverFromView:sender];
-    ALERT_UnderProcess;
+    FPPopoverTableController *controller = [[FPPopoverTableController alloc] init];
+    controller.itemsArr = @[@"1",@"2",@"3",@"4",@"5"];
+    controller.delegate = self;
+    
+    //our popover
+    popoverQty = [[FPPopoverController alloc] initWithViewController:controller];
+    popoverQty.border = NO;
+    popoverQty.tint = FPPopoverWhiteTint;
+    
+    //the popover will be presented from the okButton view
+    [popoverQty presentPopoverFromView:sender];
 
 }
 
 - (IBAction)WeightAction:(id)sender {
-//    //the view controller you want to present as popover
-//    FPPopoverTableController *controller = [[FPPopoverTableController alloc] init];
-//    controller.itemsArr = @[@"1",@"2",@"3"];
-//    controller.delegate = self;
-//    
-//    //our popover
-//    popoverWeight = [[FPPopoverController alloc] initWithViewController:controller];
-//    popoverWeight.border = NO;
-//    popoverWeight.tint = FPPopoverWhiteTint;
-//    
-//    //the popover will be presented from the okButton view
-//    [popoverWeight presentPopoverFromView:sender];
-    ALERT_UnderProcess;
+    //the view controller you want to present as popover
+    NSMutableArray *weightArray = [[NSMutableArray alloc]init];
+    NSArray * productWeights = self.product[@"ProductWeights"];
+    for (int i = 0; i < productWeights.count; i++) {
+        [weightArray addObject:[[productWeights objectAtIndex:i] objectForKey:@"Weight"]];
+    }
+
+    
+    FPPopoverTableController *controller = [[FPPopoverTableController alloc] init];
+    controller.itemsArr = weightArray;
+    controller.delegate = self;
+    
+    //our popover
+    popoverWeight = [[FPPopoverController alloc] initWithViewController:controller];
+    popoverWeight.border = NO;
+    popoverWeight.tint = FPPopoverWhiteTint;
+    
+    //the popover will be presented from the okButton view
+    [popoverWeight presentPopoverFromView:sender];
 
 
 }
@@ -125,20 +130,32 @@ FPPopoverController *popoverWeight;
 //{
 //    if (popoverWeight) {
 //        [popoverWeight dismissPopoverAnimated:YES];
-//        lblProductWeight.text = @"";
+//        lblProductWeight.text = ;
 //
 //    }
 //    else{
 //        [popoverQty dismissPopoverAnimated:YES];
-//        lblProductQuantity.text = @"";
+//        lblProductQuantity.text = [NSString stringWithFormat:@"%lu",rowNum+1];
 //
 //    }
 //
 //}
-//
+
 
 -(void)selectedItem:(NSString *)item selectedRow:(NSUInteger)rowNum
 {
+    if (popoverWeight) {
+        [popoverWeight dismissPopoverAnimated:YES];
+        lblProductWeight.text = item;
+        popoverWeight= nil;
+        
+    }
+    else{
+        [popoverQty dismissPopoverAnimated:YES];
+        lblProductQuantity.text = item;
+        popoverQty= nil;
+
+    }
 
 }
 - (void)presentedNewPopoverController:(FPPopoverController *)newPopoverController

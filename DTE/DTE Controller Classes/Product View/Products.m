@@ -38,6 +38,9 @@
 
         [dictEditedProducts setObject:prodWeights[@"Weight"] forKey:@"Weight" ];
         [dictEditedProducts setObject:prodWeights[@"Price"] forKey:@"Price" ];
+        [dictEditedProducts setObject:prodWeights[@"ProductVariantAttributeValueId"] forKey:@"ProductVariantAttributeValueId" ];
+
+        
         [arrEditedProducts addObject:dictEditedProducts];
         
     }
@@ -73,8 +76,12 @@
         [cell.btnProdWeight addTarget:self action:@selector(WeightAction:) forControlEvents:UIControlEventTouchUpInside];
         [cell.btnProdWeight setTag:indexPath.row];
         
-        [cell.btnProdDetail addTarget:self action:@selector(DetailsAction) forControlEvents:UIControlEventTouchUpInside];
-        [cell.btnAddToCart addTarget:self action:@selector(AddToCartAction) forControlEvents:UIControlEventTouchUpInside];
+        [cell.btnProdDetail addTarget:self action:@selector(DetailsAction:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.btnProdDetail setTag:indexPath.row];
+
+        [cell.btnAddToCart addTarget:self action:@selector(AddToCartAction:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.btnAddToCart setTag:indexPath.row];
+
       
 
     }
@@ -146,6 +153,8 @@
    
     ALERT_UnderProcess;
 
+    
+
 }
 
 - (IBAction)SettingsAction:(id)sender {
@@ -158,16 +167,16 @@
 
 -(void)WeightAction:(UIButton*)sender
 {
+    indexRow = sender.tag;
+
     NSMutableArray *weightArray = [[NSMutableArray alloc]init];
-    NSDictionary * product =self.Products[sender.tag];
+    NSDictionary * product =self.Products[indexRow];
 
     NSArray * productWeights = product[@"ProductWeights"];
     for (int i = 0; i < productWeights.count; i++) {
         [weightArray addObject:[[productWeights objectAtIndex:i] objectForKey:@"Weight"]];
     }
     
-  //  ALERT_UnderProcess;
-    indexRow = sender.tag;
     
     //the view controller you want to present as popover
     FPPopoverTableController *controller = [[FPPopoverTableController alloc] init];
@@ -185,14 +194,90 @@
  
 }
 
--(void)AddToCartAction
+-(void)AddToCartAction:(UIButton*)sender
 {
-//    ALERT_UnderProcess;
+    indexRow = sender.tag;
+    strWeight = [arrEditedProducts[indexRow][@"Weight"] stringByReplacingOccurrencesOfString:@" " withString:@""] ;
+    
+    NSMutableDictionary *dictProdInfo =[[NSMutableDictionary alloc] init];
+    dictProdInfo[@"CustomerId"] = @"8931";
+    dictProdInfo[@"ProductVariantAttributeValueID"] = arrEditedProducts[indexRow][@"ProductVariantAttributeValueId"];
+    dictProdInfo[@"ProductVariantID"] = self.Products[indexRow][@"ProductVariantId"];
+    dictProdInfo[@"Qty"] = @"1";
+    dictProdInfo[@"Weight"] = strWeight;
+
     
     
-    
+    [self AddToCart:dictProdInfo];
    
 }
+
+
+-(void)AddToCart:(NSMutableDictionary*)prodToAdd
+{
+    
+    if (![APIManager isNetworkAvailable]) {
+        vwError.hidden = false;
+        
+        return;
+    }
+    [[APIManager sharedManager] addToCartForProduct:prodToAdd withCompletionBlock:^(id  _Nullable response, NSError * _Nullable error) {
+        if (!error) {
+            
+         
+            
+        }
+    }];
+//   ----------------------------------------------------------
+//    Getting response as:
+//    Printing description of response:
+//    <__NSArrayI 0x600000247bf0>(
+//    {
+//        CreatedOn = "/Date(1503427154517)/";
+//        CustomerSessionGuid = "ac268143-30fd-461c-afc0-adba49378b73";
+//        ProductAttribute = "<Attributes><ProductVariantAttribute ID=\"34\"><ProductVariantAttributeValue><Value>674</Value></ProductVariantAttributeValue></ProductVariantAttribute></Attributes>";
+//        ProductName = "Biryani Pulav Rice";
+//        ProductVariantId = 108;
+//        Quantity = 4;
+//        ShoppingCartItemId = 56154;
+//        ShoppingCartTypeId = 1;
+//        TotalPrice = "\U0930\U0941 700.00";
+//        UnitPrice = "175.00";
+//        UpdatedOn = "/Date(1503466341843)/";
+//        Weight = "Weight: 1 kg";
+//    },
+//    {
+//        CreatedOn = "/Date(1503466119407)/";
+//        CustomerSessionGuid = "ac268143-30fd-461c-afc0-adba49378b73";
+//        ProductAttribute = "<Attributes><ProductVariantAttribute ID=\"323\"><ProductVariantAttributeValue><Value>720</Value></ProductVariantAttributeValue></ProductVariantAttribute></Attributes>";
+//        ProductName = "Wheat Chakki Atta";
+//        ProductVariantId = 170;
+//        Quantity = 4;
+//        ShoppingCartItemId = 56155;
+//        ShoppingCartTypeId = 1;
+//        TotalPrice = "\U0930\U0941 1,180.00";
+//        UnitPrice = "295.00";
+//        UpdatedOn = "/Date(1503466205267)/";
+//        Weight = "Weight: 5 Kg";
+//    },
+//    {
+//        CreatedOn = "/Date(1503466480267)/";
+//        CustomerSessionGuid = "ac268143-30fd-461c-afc0-adba49378b73";
+//        ProductAttribute = "<Attributes><ProductVariantAttribute ID=\"334\"><ProductVariantAttributeValue><Value>755</Value></ProductVariantAttributeValue></ProductVariantAttribute></Attributes>";
+//        ProductName = "Brown Basmati Rice Superfine ";
+//        ProductVariantId = 275;
+//        Quantity = 1;
+//        ShoppingCartItemId = 56156;
+//        ShoppingCartTypeId = 1;
+//        TotalPrice = "\U0930\U0941 185.00";
+//        UnitPrice = "185.00";
+//        UpdatedOn = "/Date(1503466480267)/";
+//        Weight = "Weight: 1 Kg";
+//    }
+//                                )
+//
+}
+
 
 #pragma mark - FPPopover Delegate
 

@@ -115,6 +115,17 @@
 }
 
 
+-(void)addToCartForProduct:(NSMutableDictionary *)productToAdd withCompletionBlock:(APIinfoCompletionBlock)block
+{
+//    GET /mobileservice.asmx/AddToCart?CustomerId=string&ProductVariantAttributeValueID=string&ProductVeriantID=string&Qty=string&Weight=string
+    
+//    http://demo.downtoearthorganicfood.com/mobileservice.asmx/AddToCart?CustomerId=8931&ProductVariantAttributeValueID=674&ProductVeriantID=108&Qty=1&Weight=1
+    
+   NSString *requestURL =[NSString stringWithFormat:@"mobileservice.asmx/AddToCart?CustomerId=%@&ProductVariantAttributeValueID=%@&ProductVeriantID=%@&Qty=%@&Weight=%@",productToAdd[@"CustomerId"],productToAdd[@"ProductVariantAttributeValueID"],productToAdd[@"ProductVariantID"],productToAdd[@"Qty"],productToAdd[@"Weight"]];
+[self GETInfoRequestWithURLString:requestURL param:nil completionBlock:block];
+
+}
+
 -(void)addToCart
 {
     

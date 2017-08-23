@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ShowCart : UIViewController
+@interface ShowCart : BaseClass<UITableViewDelegate,UITableViewDataSource>
+{
+
+    __weak IBOutlet UITableView *tblCartItems;
+    
+    
+}
+
+- (IBAction)CheckoutAction:(id)sender;
+- (IBAction)BackAction:(id)sender;
+- (IBAction)SearchProductAction:(id)sender;
+- (IBAction)CartAction:(id)sender;
+- (IBAction)SettingsAction:(id)sender;
 
 @end

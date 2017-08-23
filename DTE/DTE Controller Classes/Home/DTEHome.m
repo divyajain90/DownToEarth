@@ -82,7 +82,6 @@
 -(void)getCategory
 {
     if (![APIManager isNetworkAvailable]) {
-//        [self showAlertTitle:@"" message:@"Please check your internet connection"];
         vwError.hidden = false;
 
         return;
@@ -259,7 +258,8 @@
     
 //    [[NSNotificationCenter defaultCenter] postNotificationName:@"addBadge" object:nil];
     
-    ALERT_UnderProcess;
+    [self performSegueWithIdentifier:@"CartItemsSegue" sender:nil];
+
 }
 
 - (IBAction)SettingsAction:(id)sender {
@@ -379,6 +379,8 @@
         vc.Products = sender;
         vc.strCategory = category[@"CategoryName"];
     }
+    
+    
 }
 
 

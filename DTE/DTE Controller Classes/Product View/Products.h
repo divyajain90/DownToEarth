@@ -18,12 +18,14 @@
     __weak IBOutlet UIView *vwError;
     __weak IBOutlet UILabel *lblCategoryName;
     __weak IBOutlet UITableView *tblProducts;
-    NSString *strWeight;
     NSInteger indexRow;
-//    NSMutableArray *arraySelectedWeight;
     NSMutableArray *arrEditedProducts;
 
     NSMutableArray * arrProducts;
+    NSString* strProductVariantAttributeValueID;
+    NSString* strProductVariantID;
+    NSString* strQty;
+    NSString* strWeight;
 }
 @property(nonatomic, strong) NSArray * Products;
 
