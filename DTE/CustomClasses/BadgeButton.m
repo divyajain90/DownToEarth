@@ -15,21 +15,22 @@ static int i ;
     self = [super initWithCoder:aDecoder];
     if (self) {
         i=0;
-        [self addBadge];
+//        if (i>0) {
+//            [self addBadge];
+//        }
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addBadge) name:@"addBadge" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeBadge) name:@"removeBadge" object:nil];
+
     }
     return self;
 }
 
-
 -(void)addBadge
 {
     i = i+1;
-    NSString *successRemainingStr = [NSString stringWithFormat:@"%d",i];
+    NSString *successRemainingStr = [NSString stringWithFormat:@"%d",i+1];
     CustomBadge *badge = [CustomBadge customBadgeWithString:successRemainingStr];
     CGFloat y;
-    
-    //    y = badge.frame.origin.y + badge.frame.size.height;
     y= 0;
     CGPoint point = CGPointMake(self.frame.size.width-badge.frame.size.width/2 + 3, y);
     CGSize size = CGSizeMake(15,15);
@@ -40,6 +41,26 @@ static int i ;
     [badge setBadgeStyle:badgeStyle];
     [self addSubview:badge];
     
+}
+
+
+-(void)removeBadge
+{
+    i=i-1;
+    NSString *successRemainingStr = [NSString stringWithFormat:@"%d",i+1];
+    CustomBadge *badge = [CustomBadge customBadgeWithString:successRemainingStr];
+    CGFloat y;
+    y= 0;
+    CGPoint point = CGPointMake(self.frame.size.width-badge.frame.size.width/2 + 3, y);
+    CGSize size = CGSizeMake(15,15);
+    CGRect rect = CGRectMake(point.x, point.y, size.width, size.height);
+    [badge setFrame:rect];
+    
+    BadgeStyle *badgeStyle = [BadgeStyle freeStyleWithTextColor:[UIColor greenColor] withInsetColor:[UIColor colorWithRed:17.0/255.0 green:80/255.0 blue:100.0/255.0 alpha:1.0] withFrameColor:nil withFrame:nil withShadow:nil withShining:nil withFontType:BadgeStyleFontTypeHelveticaNeueLight];
+    [badge setBadgeStyle:badgeStyle];
+    [self addSubview:badge];
+
+
 }
 
 @end

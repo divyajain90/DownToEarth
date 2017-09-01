@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SelectShippingAddress : UIViewController
+@interface SelectShippingAddress : BaseClass<UITableViewDelegate,UITableViewDataSource>
+{
+
+    __weak IBOutlet UITableView *tblSelectAddress;
+    
+    NSMutableArray* arrShippingAddress;
+}
+
+@property(strong,nonatomic)NSMutableDictionary* dictDeliveryAddress;
+
+
+- (IBAction)BackAction:(id)sender;
 
 @end

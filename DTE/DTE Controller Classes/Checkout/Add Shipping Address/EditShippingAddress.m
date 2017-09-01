@@ -7,7 +7,7 @@
 //
 
 #import "EditShippingAddress.h"
-
+#import "SelectShippingAddress.h"
 @interface EditShippingAddress ()
 
 @end
@@ -35,10 +35,35 @@
         [self setUIForTextBox:txt];
         
     }
+    if (self.toEdit) {
+        [self updateUI];
+    }
+
+}
+
+
+-(void)updateUI
+{
+    txtFullName.text = self.dictDeliveryAddress[@"FullName"];
+    txtFlatNo.text = self.dictDeliveryAddress[@"AddressLine1"];
+    txtColonyStreet.text = self.dictDeliveryAddress[@"AddressLine2"];
+    txtCity.text = self.dictDeliveryAddress[@"City"];
+    txtState.text = self.dictDeliveryAddress[@"State"];
+    txtMobile.text = self.dictDeliveryAddress[@"Mobile"];
+    txtLandmark.text = self.dictDeliveryAddress[@"Landmark"];
+    txtPincode.text = self.dictDeliveryAddress[@"Postal"];
+
 }
 
 - (IBAction)BackAction:(id)sender
 {
+    if (self.toEdit) {
+    
+    
+        GO_BACK;
+
+    }
+    else
     GO_BACK;
 }
 
@@ -120,5 +145,40 @@
 
 
 - (IBAction)ContinueAction:(id)sender {
+    
+    self.dictDeliveryAddress = [[NSMutableDictionary alloc] init];
+//    dictDeliveryAddress[@"FullName"] = txtFullName.text;
+//    dictDeliveryAddress[@"AddressLine1"] = txtFlatNo.text;
+//    dictDeliveryAddress[@"AddressLine2"] = txtColonyStreet.text;
+//    dictDeliveryAddress[@"City"] = [NSString stringWithFormat:@"%@, %@ %@",txtCity.text,txtState.text,txtPincode];
+//    dictDeliveryAddress[@"Country"] = @"India";
+    
+    self.dictDeliveryAddress[@"FullName"] = @"Veerendra";
+    self.dictDeliveryAddress[@"AddressLine1"] = @"E-703";
+    self.dictDeliveryAddress[@"AddressLine2"] = @"Greenzone";
+    self.dictDeliveryAddress[@"City"] = @"Pune";
+    self.dictDeliveryAddress[@"State"] = @"Maharashtra";
+    self.dictDeliveryAddress[@"Postal"] = @"411007";
+
+    self.dictDeliveryAddress[@"Country"] = @"India";
+    self.dictDeliveryAddress[@"Mobile"] = @"9860697457";
+    self.dictDeliveryAddress[@"Landmark"] = @"";
+
+//   [User sharedUser]
+    
+    [self performSegueWithIdentifier:@"SelectAddressSegue" sender:self.dictDeliveryAddress];
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    SelectShippingAddress *vc = segue.destinationViewController;
+
+    vc.dictDeliveryAddress = sender;
+}
+
+- (IBAction)SettingsAction:(id)sender;
+{
+
+}
+
 @end

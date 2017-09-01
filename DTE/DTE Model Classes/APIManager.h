@@ -31,8 +31,9 @@ typedef void(^APIinfoCompletionBlock)(_Nullable id response,NSError *_Nullable e
 -(void)getProductsByCategoryID:(NSString*)categoryID withCompletionBlock:(APIinfoCompletionBlock)block;
 -(void)getProductDetailByProductID:(NSString*)productID withCompletionBlock:(APIinfoCompletionBlock)block;
 -(void)addToCartForProduct:(NSDictionary*)productToAdd withCompletionBlock:(APIinfoCompletionBlock)block;
+-(void)searchProductByKeywords:(NSString*)keywords withCompletionBlock:(APIinfoCompletionBlock)block;
+-(void)GetCartByCustomerId:(NSString*)customerID withCompletionBlock:(APIinfoCompletionBlock)block;
+-(void)GETInfoRequestWithUrlString:(NSString*)urlString userINFO:(User*)user completionBlock:(APIinfoCompletionBlock)block;
 
-
-//-(void)addToCartForCustumerId:(NSString*)customerID withProductVariantAttributeValueID:(NSString*)productVariantAttributeValueID withProductVariantID:(NSString*)productVariantID:
 @end
 NS_ASSUME_NONNULL_END

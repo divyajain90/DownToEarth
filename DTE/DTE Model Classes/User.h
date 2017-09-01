@@ -60,7 +60,7 @@ typedef void(^userInfoCompletion)(NSError*error,NSDictionary* res);
 @property(nonatomic,strong)NSString* customerName;
 @property(nonatomic,strong)NSString* customerGuid;
 @property(nonatomic,strong)NSString* customerId;
-@property(nonatomic,strong)NSDictionary* shippingAddress;
+@property(nonatomic,strong)NSMutableArray* shippingAddress;
 @property(nonatomic,strong)NSArray* billingAddress;
 
 //@property(nonatomic,strong)NSString* billingFirstName;

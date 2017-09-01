@@ -13,7 +13,9 @@
 
     __weak IBOutlet UITableView *tblCartItems;
     
-    
+    NSMutableArray *arrCartItems;
+    NSString *strSubTotal;
+
 }
 
 - (IBAction)CheckoutAction:(id)sender;

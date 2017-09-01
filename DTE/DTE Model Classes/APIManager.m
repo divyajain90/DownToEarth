@@ -17,7 +17,7 @@
     
     // execute initialization exactly once
     dispatch_once(&onceToken, ^{
-        sharedManager = [[APIManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://demo.downtoearthorganicfood.com/"]];
+        sharedManager = [[APIManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://demo.downtoearthorganicfood.com/mobileservice.asmx/"]];
     });
     return sharedManager;
 }
@@ -36,22 +36,57 @@
 
 -(void)registerUser:(User*)user completionBlock:(APIinfoCompletionBlock)block
 {
-    NSString *requestURL =[NSString stringWithFormat:@"MobServiceAPI.ashx?Method=Register&Email=%@&password=%@&FirstName=%@&LastName=%@&Mobile=%@",user.email,user.password,user.fName,user.lName,user.mobile];
+    // API: GET /mobileservice.asmx/Register?Email=string&Password=string&FirstName=string&LastName=string&Mobile=string HTTP/1.1
 
-    [self POSTInfoRequestWithUrlString:requestURL userINFO:user completionBlock:block];
+    
+    NSString *requestURL =[NSString stringWithFormat:@"Register?Email=%@&Password=%@&FirstName=%@&LastName=%@&Mobile=%@",user.email,user.password,user.fName,user.lName,user.mobile];
+
+    
+//    [self POSTInfoRequestWithUrlString:requestURL userINFO:user completionBlock:block];
+    
+    [self GETInfoRequestWithURLString:requestURL param:nil completionBlock:block];
 }
 
 
 -(void)signInUser:(User*)user completionBlock:(APIinfoCompletionBlock)block
 {
-    NSString *requestURL =[NSString stringWithFormat:@"MobServiceAPI.ashx?Method=Login&Email=%@&password=%@",user.email,user.password];
-    [self POSTInfoRequestWithUrlString:requestURL userINFO:user completionBlock:block];
+    
+//    GET /mobileservice.asmx/Login?Email=string&Password=string
+
+    NSString *requestURL =[NSString stringWithFormat:@"Login?&Email=%@&Password=%@",user.email,user.password];
+
+    [self GETInfoRequestWithUrlString:requestURL userINFO:user completionBlock:block];
+//    [self GETInfoRequestWithURLString:requestURL param:nil completionBlock:block];
 
 
 }
 
+-(void)GETInfoRequestWithUrlString:(NSString*)urlString userINFO:(User*)user completionBlock:(APIinfoCompletionBlock)block
+{
+    
+    
+    
+    [self GET:urlString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (block) {
+            block(responseObject, nil);
+        }
+        
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (block) {
+            block(nil, error);
+        }
+        
+    }];
+    
+}
+
+
+
 -(void)POSTInfoRequestWithUrlString:(NSString*)urlString userINFO:(User*)user completionBlock:(APIinfoCompletionBlock)block
 {
+
+   
 
     [self POST:urlString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (block) {
@@ -71,8 +106,8 @@
 
 -(void)getAllCategories
 {
-   // NSString *requestURL =[NSString stringWithFormat:@"MobServiceAPI.ashx?Method=GetAllCategories"];
-     NSString *requestURL =[NSString stringWithFormat:@"%@GetAllCategories",BSE_URL];
+//    GET /mobileservice.asmx/GetAllCategories? HTTP/1.1
+     NSString *requestURL =[NSString stringWithFormat:@"GetAllCategories?"];
     [self GETInfoRequestWithURLString:requestURL param:nil completionBlock:nil];
 
 }
@@ -80,8 +115,7 @@
 
 -(void)getAllCategoriesWithCompletionHandler:(APIinfoCompletionBlock)block
 {
-  //  NSString *requestURL =[NSString stringWithFormat:@"MobServiceAPI.ashx?Method=GetAllCategories"];
-    NSString *requestURL =[NSString stringWithFormat:@"%@GetAllCategories",BSE_URL];
+    NSString *requestURL =[NSString stringWithFormat:@"GetAllCategories?"];
 
     [self GETInfoRequestWithURLString:requestURL param:nil completionBlock:block];
     
@@ -89,7 +123,7 @@
 
 -(void)getAllBannerWithCompletionHandler:(APIinfoCompletionBlock)block
 {
-    NSString *requestURL =[NSString stringWithFormat:@"MobServiceAPI.ashx?Method=GetBanner"];
+    NSString *requestURL =[NSString stringWithFormat:@"GetBanner?"];
     [self GETInfoRequestWithURLString:requestURL param:nil completionBlock:block];
     
 }
@@ -98,8 +132,9 @@
 
 -(void)getProductsByCategoryID:(NSString*)categoryID withCompletionBlock:(APIinfoCompletionBlock)block
 {
-   // NSString *requestURL =[NSString stringWithFormat:@"MobServiceAPI.ashx?Method=GetProductsByCategoryId&CategoryId=%@",categoryID];
-     NSString *requestURL =[NSString stringWithFormat:@"%@GetProductsByCategoryId?CategoryId=%@",BSE_URL,categoryID];
+//    GET /mobileservice.asmx/GetProductsByCategoryId?CategoryId=string
+
+    NSString *requestURL =[NSString stringWithFormat:@"GetProductsByCategoryId?CategoryId=%@",categoryID];
     
     [self GETInfoRequestWithURLString:requestURL param:nil completionBlock:block];
 
@@ -107,7 +142,10 @@
 
 -(void)getProductDetailByProductID:(NSString*)productID withCompletionBlock:(APIinfoCompletionBlock)block
 {
-    NSString *requestURL =[NSString stringWithFormat:@"MobServiceAPI.ashx?Method=GetProductDetailByByProductId&ProductId=%@",productID];
+//    GET /mobileservice.asmx/GetProductDetailByByProductId?ProductId=string
+
+    
+    NSString *requestURL =[NSString stringWithFormat:@"GetProductDetailByByProductId?ProductId=%@",productID];
     
     [self GETInfoRequestWithURLString:requestURL param:nil completionBlock:block];
 
@@ -121,18 +159,26 @@
     
 //    http://demo.downtoearthorganicfood.com/mobileservice.asmx/AddToCart?CustomerId=8931&ProductVariantAttributeValueID=674&ProductVeriantID=108&Qty=1&Weight=1
     
-   NSString *requestURL =[NSString stringWithFormat:@"mobileservice.asmx/AddToCart?CustomerId=%@&ProductVariantAttributeValueID=%@&ProductVeriantID=%@&Qty=%@&Weight=%@",productToAdd[@"CustomerId"],productToAdd[@"ProductVariantAttributeValueID"],productToAdd[@"ProductVariantID"],productToAdd[@"Qty"],productToAdd[@"Weight"]];
-[self GETInfoRequestWithURLString:requestURL param:nil completionBlock:block];
+   NSString *requestURL =[NSString stringWithFormat:@"AddToCart?CustomerId=%@&ProductVariantAttributeValueID=%@&ProductVeriantID=%@&Qty=%@&Weight=%@",productToAdd[@"CustomerId"],productToAdd[@"ProductVariantAttributeValueID"],productToAdd[@"ProductVariantID"],productToAdd[@"Qty"],productToAdd[@"Weight"]];
+    [self GETInfoRequestWithURLString:requestURL param:nil completionBlock:block];
 
 }
 
--(void)addToCart
+-(void)searchProductByKeywords:(NSString*)keywords withCompletionBlock:(APIinfoCompletionBlock)block
 {
+//    GET /mobileservice.asmx/Search?keywords=string
+    NSString *requestURL =[NSString stringWithFormat:@"Search?keywords=%@",keywords];
+    
+    [self GETInfoRequestWithURLString:requestURL param:nil completionBlock:block];
     
 }
 
--(void)GetCartByCustomerId
+-(void)GetCartByCustomerId:(NSString*)customerID withCompletionBlock:(APIinfoCompletionBlock)block
 {
+//    GET /mobileservice.asmx/GetCartByCustomerId?CustomerId=string HTTP/1.1
+    NSString *requestURL =[NSString stringWithFormat:@"GetCartByCustomerId?CustomerId=%@",customerID];
+    
+    [self GETInfoRequestWithURLString:requestURL param:nil completionBlock:block];
 
 
 }
@@ -141,7 +187,7 @@
 {
 
     [self GET:urlString parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-    if ([urlString isEqualToString:@"http://demo.downtoearthorganicfood.com/mobileservice.asmx/GetAllCategories"]) {
+        if ([urlString isEqualToString:@"GetAllCategories?"]) {
         self.categories = responseObject;
     }
         

@@ -11,6 +11,7 @@
 @interface DTEHome : BaseClass<UIScrollViewDelegate,SlideNavigationControllerDelegate,UITableViewDelegate,UITableViewDataSource,UIDocumentInteractionControllerDelegate>
 {
 
+    __weak IBOutlet UITextField *txtSearch;
     __weak IBOutlet UIView *vwError;
     __weak IBOutlet UIScrollView *myScrollView;
     __weak IBOutlet UIPageControl *pgCtrl;
@@ -36,5 +37,6 @@
 - (IBAction)CartAction:(id)sender;
 - (IBAction)SettingsAction:(id)sender;
 - (IBAction)RetryAction:(id)sender;
+- (IBAction)SearchAction:(id)sender;
 
 @end

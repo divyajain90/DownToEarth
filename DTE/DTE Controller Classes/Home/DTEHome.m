@@ -38,11 +38,14 @@
     
     [self getBannerList];
     [self getCategory];
-
+    
     [tblCategories reloadData];
+    NSLog([User sharedUser].isLoggedIn?@"logged yes":@"logged no");
+    NSLog(@"user name is:%@",[User sharedUser].customerName);
+    NSLog([User sharedUser].isLoggedIn?@"logged yes":@"logged no");
+    NSLog(@"customerGuid is:%@",[User sharedUser].customerGuid);
 
-  
-    }
+}
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -55,27 +58,54 @@
 
 -(void)getBannerList
 {
+    //    if (![APIManager isNetworkAvailable]) {
+    //        //        [self showAlertTitle:@"" message:@"Please check your internet connection"];
+    //        vwError.hidden = false;
+    //
+    //        return;
+    //    }
+    //
+    //
+    //    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    //    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@GetBanner",BSE_URL]]];
+    //    [request setHTTPMethod:@"GET"];
+    //
+    //    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    //    [[session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    //        NSString *requestReply = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+    //         arrayBanner = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+    //        [self setUP];
+    //
+    //        NSLog(@"Request reply: %@", requestReply);
+    //
+    //    }] resume];
+    //
+    
+    
+    
     if (![APIManager isNetworkAvailable]) {
-        //        [self showAlertTitle:@"" message:@"Please check your internet connection"];
         vwError.hidden = false;
         
         return;
     }
     
+    [[APIManager sharedManager]getAllBannerWithCompletionHandler:^(id  _Nullable response, NSError * _Nullable error) {
+        if (!error) {
+            arrayBanner = response;
+            [self setUP];
+            
+        }
+        else
+        {
+            vwError.hidden = false;
+        }
+    }];
     
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@GetBanner",BSE_URL]]];
-    [request setHTTPMethod:@"GET"];
+//    AltText = "Organic food";
+//    BannerId = 1;
+//    BannerName = "http://www.downtoearthorganicfood.com/App_Themes/dtenew/images/banner_img1.jpg";
+//
     
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    [[session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        NSString *requestReply = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-         arrayBanner = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-        [self setUP];
-
-        NSLog(@"Request reply: %@", requestReply);
-        
-    }] resume];
 }
 
 #pragma mark - Misc
@@ -83,7 +113,7 @@
 {
     if (![APIManager isNetworkAvailable]) {
         vwError.hidden = false;
-
+        
         return;
     }
     
@@ -92,15 +122,15 @@
             arrCategories = [[[APIManager sharedManager] categories]mutableCopy];
             [tblCategories reloadData];
             vwError.hidden = true;
-             myScrollView.contentSize = CGSizeMake(self.view.frame.size.width, (arrCategories.count * 45) + 300);
-
+            myScrollView.contentSize = CGSizeMake(self.view.frame.size.width, (arrCategories.count * 45) + 300);
+            
         }
         else
         {
             vwError.hidden = false;
         }
     }];
-
+    
 }
 
 -(void)setUP{
@@ -113,7 +143,7 @@
     
     
     
-
+    
 }
 
 #pragma mark - slidingImagesMethods
@@ -126,9 +156,9 @@
         NSDictionary *dictTemp = [arrayBanner objectAtIndex:i - 1];
         
         NSURL *prodImgURL = [NSURL URLWithString:dictTemp[@"BannerName"]];
-      
         
-       // UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"Image%d",i]];
+        
+        // UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"Image%d",i]];
         // create imageView
         UIImageView *imgV = [[UIImageView alloc] initWithFrame:CGRectMake((i-1)*scrMain.frame.size.width, 0, scrMain.frame.size.width, scrMain.frame.size.height)];
         [imgV setBackgroundColor:[UIColor yellowColor]];
@@ -136,7 +166,7 @@
         imgV.contentMode=UIViewContentModeScaleToFill;
         // set image
         [imgV sd_setImageWithURL:prodImgURL placeholderImage:[UIImage imageNamed:@"Placeholder.jpg"]];
-       // [imgV setImage:image];
+        // [imgV setImage:image];
         // apply tag to access in future
         imgV.tag=i+1;
         // add to scrollView
@@ -192,13 +222,13 @@
     
     //-- set strings and URLs
     NSString *textObject = @"Information that I want to tweet or share";
-//    NSString *urlString = [NSString stringWithFormat:@"http://www.mygreatdomain/%@", _selectedPageString];
+    //    NSString *urlString = [NSString stringWithFormat:@"http://www.mygreatdomain/%@", _selectedPageString];
     
-//    NSURL *url = [NSURL URLWithString:urlString];
+    //    NSURL *url = [NSURL URLWithString:urlString];
     
-//    NSArray *activityItems = [NSArray arrayWithObjects:textObject, url,  nil];
-        NSArray *activityItems = [NSArray arrayWithObjects:textObject,  nil];
-
+    //    NSArray *activityItems = [NSArray arrayWithObjects:textObject, url,  nil];
+    NSArray *activityItems = [NSArray arrayWithObjects:textObject,  nil];
+    
     //-- initialising the activity view controller
     UIActivityViewController *avc = [[UIActivityViewController alloc]
                                      initWithActivityItems:activityItems
@@ -211,36 +241,36 @@
     //-- define the activity view completion handler
     avc.completionWithItemsHandler = ^(UIActivityType __nullable activityType, BOOL completed, NSArray * __nullable returnedItems, NSError * __nullable activityError){
         if (completed) {
-                        // NSLog(@"Selected activity was performed.");
-                    } else {
-                        if (activityType == NULL) {
-                            //   NSLog(@"User dismissed the view controller without making a selection.");
-                        } else {
-                            //  NSLog(@"Activity was not performed.");
-                        }
-                    }
+            // NSLog(@"Selected activity was performed.");
+        } else {
+            if (activityType == NULL) {
+                //   NSLog(@"User dismissed the view controller without making a selection.");
+            } else {
+                //  NSLog(@"Activity was not performed.");
+            }
+        }
     };
     
     [self presentViewController:avc animated:YES completion:nil];
-
-    
-//    ------------ Or-----------
-//dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-//            UIButton *btn = (UIButton*)sender;
-//            UIImage *instaImage = [UIImage imageNamed:@"logo"];
-//            NSString* imagePath = [NSString stringWithFormat:@"%@/image.jpg",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]];
-//            [[NSFileManager defaultManager] removeItemAtPath:imagePath error:nil];
-//            [UIImagePNGRepresentation(instaImage) writeToFile:imagePath atomically:YES];
-//            _docController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:imagePath]];
-//            
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                [_docController presentOptionsMenuFromRect:btn.frame inView:self.view animated:YES];
-//
-//            });
     
     
-//        });
-   
+    //    ------------ Or-----------
+    //dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+    //            UIButton *btn = (UIButton*)sender;
+    //            UIImage *instaImage = [UIImage imageNamed:@"logo"];
+    //            NSString* imagePath = [NSString stringWithFormat:@"%@/image.jpg",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]];
+    //            [[NSFileManager defaultManager] removeItemAtPath:imagePath error:nil];
+    //            [UIImagePNGRepresentation(instaImage) writeToFile:imagePath atomically:YES];
+    //            _docController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:imagePath]];
+    //
+    //            dispatch_async(dispatch_get_main_queue(), ^{
+    //                [_docController presentOptionsMenuFromRect:btn.frame inView:self.view animated:YES];
+    //
+    //            });
+    
+    
+    //        });
+    
 }
 
 - (void)presentActivityController:(UIActivityViewController *)controller {
@@ -256,10 +286,9 @@
 
 - (IBAction)CartAction:(id)sender {
     
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"addBadge" object:nil];
     
     [self performSegueWithIdentifier:@"CartItemsSegue" sender:nil];
-
+    
 }
 
 - (IBAction)SettingsAction:(id)sender {
@@ -268,6 +297,11 @@
 
 - (IBAction)RetryAction:(id)sender {
     [self getCategory];
+}
+
+- (IBAction)SearchAction:(id)sender {
+    
+    [self performSegueWithIdentifier:@"SearchProdSegue" sender:txtSearch.text];
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -310,22 +344,22 @@
     if (cell== nil) {
         NSArray *nibArray = [[NSBundle mainBundle] loadNibNamed:@"HomeCell" owner:self options:nil];
         cell = [nibArray objectAtIndex:0];
-
-//        cell.backgroundColor = [UIColor clearColor];
-   
+        
+        //        cell.backgroundColor = [UIColor clearColor];
+        
         // Draw top border only on first cell
         if (indexPath.row == 0) {
             UIView *topLineView = [[UIView alloc] initWithFrame:CGRectMake(15, 0, self.view.bounds.size.width-30, 1)];
             topLineView.backgroundColor = [UIColor greenColor];
             [cell.contentView addSubview:topLineView];
         }
-//        NSLog(@"indexpatrow %ld arr count %lu",(long)indexPath.row,(unsigned long)[arrCategories count]);
-//        if ((long)indexPath.row == [arrCategories count]-1) {
-//
-//        UIView *bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(15, cell.bounds.size.height, self.view.bounds.size.width-30, 1)];
-//        bottomLineView.backgroundColor = [UIColor greenColor];
-//        [cell.contentView addSubview:bottomLineView];
-//        }
+        //        NSLog(@"indexpatrow %ld arr count %lu",(long)indexPath.row,(unsigned long)[arrCategories count]);
+        //        if ((long)indexPath.row == [arrCategories count]-1) {
+        //
+        //        UIView *bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(15, cell.bounds.size.height, self.view.bounds.size.width-30, 1)];
+        //        bottomLineView.backgroundColor = [UIColor greenColor];
+        //        [cell.contentView addSubview:bottomLineView];
+        //        }
     }
     
     NSDictionary * category =arrCategories[indexPath.row];
@@ -341,29 +375,29 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-//        NSDictionary * category =arrCategories[indexPath.row];
-//    productsSegue
-//    Products *vc = [GET_STORYBOARD instantiateViewControllerWithIdentifier:@"Products"];
+    //        NSDictionary * category =arrCategories[indexPath.row];
+    //    productsSegue
+    //    Products *vc = [GET_STORYBOARD instantiateViewControllerWithIdentifier:@"Products"];
     selectedRow = indexPath.row;
     [Utility showHUDOnView:self.view];
     dispatch_time_t deferTime = 0.10f;
     dispatch_after(deferTime, dispatch_get_main_queue(), ^{
-    [[APIManager sharedManager] getProductsByCategoryID:[[arrCategories objectAtIndex:indexPath.row] objectForKey:@"CategoryId"] withCompletionBlock:^(id  _Nullable response, NSError * _Nullable error) {
-        if (!error) {
+        [[APIManager sharedManager] getProductsByCategoryID:[[arrCategories objectAtIndex:indexPath.row] objectForKey:@"CategoryId"] withCompletionBlock:^(id  _Nullable response, NSError * _Nullable error) {
+            if (!error) {
+                
+                [self performSegueWithIdentifier:@"productSegue" sender:response];
+                
+                //            vc.Products = response;
+                //            [self presentViewController:vc animated:YES completion:NULL];
+                
+                
+            }
+            else
+                [self showAlertTitle:@"" message:[error localizedDescription]];
             
-            [self performSegueWithIdentifier:@"productSegue" sender:response];
-
-//            vc.Products = response;
-//            [self presentViewController:vc animated:YES completion:NULL];
-
-
-        }
-        else
-            [self showAlertTitle:@"" message:[error localizedDescription]];
+        }];
         
-    }];
-    
-    
+        
     });
     
 }
@@ -373,7 +407,7 @@
     if ([segue.identifier isEqualToString:@"productSegue"])
     {
         NSDictionary * category =arrCategories[selectedRow];
-
+        
         
         Products *vc = segue.destinationViewController;
         vc.Products = sender;
@@ -421,12 +455,12 @@
 //    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
 //        [cell setSeparatorInset:UIEdgeInsetsZero];
 //    }
-//    
+//
 //    // Prevent the cell from inheriting the Table View's margin settings
 //    if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
 //        [cell setPreservesSuperviewLayoutMargins:NO];
 //    }
-//    
+//
 //    // Explictly set your cell's layout margins
 //    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
 //        [cell setLayoutMargins:UIEdgeInsetsZero];

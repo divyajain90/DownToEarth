@@ -209,6 +209,8 @@
     
     
     [self AddToCart:dictProdInfo];
+    
+    
    
 }
 
@@ -223,8 +225,16 @@
     }
     [[APIManager sharedManager] addToCartForProduct:prodToAdd withCompletionBlock:^(id  _Nullable response, NSError * _Nullable error) {
         if (!error) {
+//            NSMutableArray *arrCartItems = [response mutableCopy];
             
-         
+            
+            
+//            [GET_DEFAULTS setObject:arrCartItems forKey:@"cartItems"];
+            
+            
+            
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"addBadge" object:nil];
+
             
         }
     }];
@@ -288,6 +298,16 @@
         
         [arrEditedProducts[indexRow]setValue:item forKey:@"Weight"];
         [arrEditedProducts[indexRow]setValue:arrProducts[indexRow][@"ProductWeights"][rowNum][@"Price"] forKey:@"Price"];
+        
+        
+        
+        NSArray * productWeights =arrProducts[indexRow][@"ProductWeights"];
+        NSDictionary* prodWeights = [productWeights objectAtIndex:rowNum];
+        NSString* ProductVariantAttributeValueId = [NSString stringWithFormat:@"%@",prodWeights[@"ProductVariantAttributeValueId"]];
+        
+        [arrEditedProducts[indexRow]setValue:ProductVariantAttributeValueId forKey:@"ProductVariantAttributeValueId"];
+
+        
 
         NSArray *indexPathArray = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:indexRow inSection:0]];
         [tblProducts reloadRowsAtIndexPaths:indexPathArray withRowAnimation:NO];
