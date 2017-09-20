@@ -13,8 +13,10 @@
 #import "SlideNavigationContorllerAnimatorScaleAndFade.h"
 #import "SlideNavigationContorllerAnimatorSlideAndFade.h"
 
-@implementation LeftMenuViewController
+#import "AppDelegate.h"
 
+@implementation LeftMenuViewController
+AppDelegate *app;
 #pragma mark - UIViewController Methods -
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -28,6 +30,8 @@
 {
 	[super viewDidLoad];
 	
+    app = APPDELEGATE;
+    
 //	self.tableView.separatorColor = [UIColor greenColor];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 //    self.tableView.contentInset = UIEdgeInsetsMake(-36, 0, 0, 0);
@@ -75,7 +79,6 @@
         return 80;
     
     }
-    
     }
     return 60;
 
@@ -209,7 +212,25 @@
                 vc = [GET_STORYBOARD instantiateViewControllerWithIdentifier: @"HomeView1"];
 
                 break;
+            case 2:
                 
+                vc = [GET_STORYBOARD instantiateViewControllerWithIdentifier: @"Description"];
+                break;
+            case 3:
+                app.strSideMenuPage = @"Our story";
+                vc = [GET_STORYBOARD instantiateViewControllerWithIdentifier: @"Description"];
+                break;
+            case 4:
+                app.strSideMenuPage = @"Organic food culture";
+
+                vc = [GET_STORYBOARD instantiateViewControllerWithIdentifier: @"Description"];
+                break;
+            case 5:
+                app.strSideMenuPage = @"Guarantee for quality";
+
+                vc = [GET_STORYBOARD instantiateViewControllerWithIdentifier: @"Description"];
+                break;
+
             case 6:
             {
                 [[User sharedUser] logout ];
@@ -229,8 +250,27 @@
 		case 1:
 			vc = [GET_STORYBOARD instantiateViewControllerWithIdentifier: @"Login"];
 			break;
-			
-		case 3:
+        case 2:
+            app.strSideMenuPage = @"Our story";
+
+            vc = [GET_STORYBOARD instantiateViewControllerWithIdentifier: @"Description"];
+            break;
+        case 3:
+            app.strSideMenuPage = @"Our story";
+            vc = [GET_STORYBOARD instantiateViewControllerWithIdentifier: @"Description"];
+            break;
+        case 4:
+            app.strSideMenuPage = @"Organic food culture";
+            
+            vc = [GET_STORYBOARD instantiateViewControllerWithIdentifier: @"Description"];
+            break;
+        case 5:
+            app.strSideMenuPage = @"Guarantee for quality";
+            
+            vc = [GET_STORYBOARD instantiateViewControllerWithIdentifier: @"Description"];
+            break;
+            
+		case 6:
 			[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 			[[SlideNavigationController sharedInstance] popToRootViewControllerAnimated:YES];
 			return;

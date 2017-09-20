@@ -10,6 +10,7 @@
 #import "SlideNavigationController.h"
 @interface DTEHome : BaseClass<UIScrollViewDelegate,SlideNavigationControllerDelegate,UITableViewDelegate,UITableViewDataSource,UIDocumentInteractionControllerDelegate>
 {
+    __weak IBOutlet BadgeButton *btnCart;
 
     __weak IBOutlet UITextField *txtSearch;
     __weak IBOutlet UIView *vwError;

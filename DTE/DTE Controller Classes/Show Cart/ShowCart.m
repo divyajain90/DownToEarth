@@ -101,9 +101,12 @@
 
         if (indexPath.row ==arrCartItems.count) {
             cell = [nibArray objectAtIndex:1];
+
         }
         else
             cell = [nibArray objectAtIndex:0];
+        [cell.btnRemove addTarget:self action:@selector(RemoveProduct:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.btnRemove setTag:indexPath.row];
 
         }
 
@@ -132,6 +135,26 @@
     
 }
 
+-(void)RemoveProduct:(UIButton*)sender {
+
+    NSDictionary *prodToDisplay = arrCartItems[sender.tag];
+
+    if (![APIManager isNetworkAvailable]) {
+//            vwError.hidden = false;
+    
+            return;
+    }
+    
+        [[APIManager sharedManager] removeProduct:prodToDisplay[@"ShoppingCartItemId"] withCompletionBlock:^(id  _Nullable response, NSError * _Nullable error) {
+            if (!error) {
+                [btnCart updateCart:-1];
+
+                arrCartItems=[response mutableCopy];
+                [tblCartItems reloadData];
+            }
+        }];
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat height;
@@ -156,6 +179,8 @@
 
 
 - (IBAction)CheckoutAction:(id)sender {
-    [self performSegueWithIdentifier:@"EditShippingAddressSegue" sender:nil];
+//    [self performSegueWithIdentifier:@"EditShippingAddressSegue" sender:nil];
+    
+    [self performSegueWithIdentifier:@"AddOrderSegue" sender:nil];
 }
 @end

@@ -153,6 +153,18 @@
 }
 
 
+-(void)removeProduct:(NSString*)ShoppingCartItemId withCompletionBlock:(APIinfoCompletionBlock)block
+{
+    //GET /mobileservice.asmx/DeleteCartItem?CustomerId=string&ShoppingCartItemId=string
+
+
+    
+    NSString *requestURL =[NSString stringWithFormat:@"DeleteCartItem?CustomerId=%@&ShoppingCartItemId=%@",@"8931",ShoppingCartItemId];
+    [self GETInfoRequestWithURLString:requestURL param:nil completionBlock:block];
+    
+}
+
+
 -(void)addToCartForProduct:(NSMutableDictionary *)productToAdd withCompletionBlock:(APIinfoCompletionBlock)block
 {
 //    GET /mobileservice.asmx/AddToCart?CustomerId=string&ProductVariantAttributeValueID=string&ProductVeriantID=string&Qty=string&Weight=string

@@ -9,58 +9,91 @@
 #import "BadgeButton.h"
 #import "CustomBadge.h"
 static int i ;
-@implementation BadgeButton
+@implementation BadgeButton{
+    CustomBadge *badge;
+    BadgeStyle *badgeStyle;
+}
+
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        i=0;
-//        if (i>0) {
-//            [self addBadge];
-//        }
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addBadge) name:@"addBadge" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeBadge) name:@"removeBadge" object:nil];
+    
+    if (self = [super initWithCoder:aDecoder]) {
 
+        [self initialize];
     }
     return self;
 }
 
--(void)addBadge
+-(void) initialize
 {
-    i = i+1;
-    NSString *successRemainingStr = [NSString stringWithFormat:@"%d",i+1];
-    CustomBadge *badge = [CustomBadge customBadgeWithString:successRemainingStr];
+    NSInteger cartValue = [self getCartValue];
+    
+    NSString *successRemainingStr = [NSString stringWithFormat:@"%ld", (long)cartValue];
+    badge = [CustomBadge customBadgeWithString:successRemainingStr];
     CGFloat y;
     y= 0;
     CGPoint point = CGPointMake(self.frame.size.width-badge.frame.size.width/2 + 3, y);
-    CGSize size = CGSizeMake(15,15);
+    CGSize size = CGSizeMake(15, 15);
     CGRect rect = CGRectMake(point.x, point.y, size.width, size.height);
     [badge setFrame:rect];
     
-    BadgeStyle *badgeStyle = [BadgeStyle freeStyleWithTextColor:[UIColor greenColor] withInsetColor:[UIColor colorWithRed:17.0/255.0 green:80/255.0 blue:100.0/255.0 alpha:1.0] withFrameColor:nil withFrame:nil withShadow:nil withShining:nil withFontType:BadgeStyleFontTypeHelveticaNeueLight];
+    badgeStyle = [BadgeStyle freeStyleWithTextColor:[UIColor greenColor] withInsetColor:[UIColor colorWithRed:17.0/255.0 green:80/255.0 blue:100.0/255.0 alpha:1.0] withFrameColor:nil withFrame:nil withShadow:nil withShining:nil withFontType:BadgeStyleFontTypeHelveticaNeueLight];
     [badge setBadgeStyle:badgeStyle];
     [self addSubview:badge];
-    
+    if (cartValue == 0) badge.hidden = true;
 }
 
 
--(void)removeBadge
+
++(instancetype)sharedButton
 {
-    i=i-1;
-    NSString *successRemainingStr = [NSString stringWithFormat:@"%d",i+1];
-    CustomBadge *badge = [CustomBadge customBadgeWithString:successRemainingStr];
-    CGFloat y;
-    y= 0;
-    CGPoint point = CGPointMake(self.frame.size.width-badge.frame.size.width/2 + 3, y);
-    CGSize size = CGSizeMake(15,15);
-    CGRect rect = CGRectMake(point.x, point.y, size.width, size.height);
-    [badge setFrame:rect];
+    static BadgeButton *sharedButton;
+    if (!sharedButton){
+        sharedButton = [[super allocWithZone:nil]init];
+
+    }
+    return sharedButton;
+}
+
+
+//MARK:- UpdateCart
+
+-(void)updateCart:(NSInteger)value {
+//    NSInteger cartValue = [self getCartValue] + value;
+        NSInteger cartValue = value;
+
+    badge.hidden = true;
+    if (cartValue >= 0) {
+        badge.hidden = false;
+        NSUserDefaults *pref = [NSUserDefaults standardUserDefaults];
+        [pref setInteger:cartValue forKey:@"cart"];
+        [pref synchronize];
+        [badge autoBadgeSizeWithString:[NSString stringWithFormat:@"%ld", (long)cartValue]];
+    }
+}
+
+-(void)updateCart
+{
+    NSInteger cartValue = [self getCartValue];
+    badge.hidden = true;
+    if (cartValue >= 0) {
+        badge.hidden = false;
+        NSUserDefaults *pref = [NSUserDefaults standardUserDefaults];
+        [pref setInteger:cartValue forKey:@"cart"];
+        [pref synchronize];
+        [badge autoBadgeSizeWithString:[NSString stringWithFormat:@"%ld", (long)cartValue]];
+    }
     
-    BadgeStyle *badgeStyle = [BadgeStyle freeStyleWithTextColor:[UIColor greenColor] withInsetColor:[UIColor colorWithRed:17.0/255.0 green:80/255.0 blue:100.0/255.0 alpha:1.0] withFrameColor:nil withFrame:nil withShadow:nil withShining:nil withFontType:BadgeStyleFontTypeHelveticaNeueLight];
-    [badge setBadgeStyle:badgeStyle];
-    [self addSubview:badge];
+    
+}
 
-
+-(NSInteger)getCartValue {
+    NSUserDefaults *pref = [NSUserDefaults standardUserDefaults];
+    NSInteger cart = 0;
+    if ([pref integerForKey:@"cart"]) {
+        cart = [pref integerForKey:@"cart"];
+    }
+    return cart;
 }
 
 @end

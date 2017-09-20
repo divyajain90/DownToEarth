@@ -76,8 +76,8 @@
         [cell.btnProdWeight addTarget:self action:@selector(WeightAction:) forControlEvents:UIControlEventTouchUpInside];
         [cell.btnProdWeight setTag:indexPath.row];
         
-        [cell.btnProdDetail addTarget:self action:@selector(DetailsAction:) forControlEvents:UIControlEventTouchUpInside];
-        [cell.btnProdDetail setTag:indexPath.row];
+//        [cell.btnProdDetail addTarget:self action:@selector(DetailsAction:) forControlEvents:UIControlEventTouchUpInside];
+//        [cell.btnProdDetail setTag:indexPath.row];
 
         [cell.btnAddToCart addTarget:self action:@selector(AddToCartAction:) forControlEvents:UIControlEventTouchUpInside];
         [cell.btnAddToCart setTag:indexPath.row];
@@ -161,8 +161,9 @@
     ALERT_UnderProcess;
 
 }
--(void)DetailsAction
+-(void)DetailsAction:(UIButton*)sender
 {
+    
 }
 
 -(void)WeightAction:(UIButton*)sender
@@ -207,17 +208,13 @@
     dictProdInfo[@"Weight"] = strWeight;
 
     
-    
     [self AddToCart:dictProdInfo];
-    
-    
    
 }
 
 
 -(void)AddToCart:(NSMutableDictionary*)prodToAdd
 {
-    
     if (![APIManager isNetworkAvailable]) {
         vwError.hidden = false;
         
@@ -225,17 +222,8 @@
     }
     [[APIManager sharedManager] addToCartForProduct:prodToAdd withCompletionBlock:^(id  _Nullable response, NSError * _Nullable error) {
         if (!error) {
-//            NSMutableArray *arrCartItems = [response mutableCopy];
-            
-            
-            
-//            [GET_DEFAULTS setObject:arrCartItems forKey:@"cartItems"];
-            
-            
-            
-//        [[NSNotificationCenter defaultCenter] postNotificationName:@"addBadge" object:nil];
-
-            
+            NSArray *arr = [response copy];
+            [btnCart updateCart:arr.count];
         }
     }];
 //   ----------------------------------------------------------

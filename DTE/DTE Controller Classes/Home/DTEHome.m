@@ -29,6 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    [self initializeCartBarButton];
     [self.navigationController setNavigationBarHidden:YES];
     [self setNeedsStatusBarAppearanceUpdate];
     myScrollView.delegate = self;
@@ -50,6 +51,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [Utility hideHUDOnView:self.view];
+    [btnCart updateCart];
 }
 - (UIStatusBarStyle)preferredStatusBarStyle
 {

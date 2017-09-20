@@ -10,6 +10,7 @@
 
 @interface ProductDetail : UIViewController
 {
+    __weak IBOutlet BadgeButton *btnCart;
     __weak IBOutlet UIImageView *imgProduct;
     __weak IBOutlet UILabel *lblProductName;
     __weak IBOutlet UILabel *lblProductPrice;

@@ -13,6 +13,7 @@
 
     __weak IBOutlet UITableView *tblCartItems;
     
+    __weak IBOutlet BadgeButton *btnCart;
     NSMutableArray *arrCartItems;
     NSString *strSubTotal;
 
