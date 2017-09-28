@@ -112,6 +112,14 @@
 
 }
 
+-(void)getAllStates
+{
+    //    GET /mobileservice.asmx/GetAllCategories? HTTP/1.1
+    NSString *requestURL =[NSString stringWithFormat:@"GetStateList?CountryId=41"];
+    [self GETInfoRequestWithURLString:requestURL param:nil completionBlock:nil];
+    
+}
+
 
 -(void)getAllCategoriesWithCompletionHandler:(APIinfoCompletionBlock)block
 {
@@ -176,6 +184,19 @@
 
 }
 
+-(void)AddOrderWithOrderInfo:(NSMutableDictionary*)orderInfo
+         withCompletionBlock:(APIinfoCompletionBlock)block
+{
+//    GET /mobileservice.asmx/AddOrder?CustomerId=string&AdvanceAmount=string&BillingAddressId=string&BillingFirstName=string&BillingLastName=string&BillingEmail=string&BillingAddress1=string&BillingAddress2=string&BillingCity=string&BillingStateProvinceId=string&BillingZipPostalCode=string&BillingCountryId=string&BillingMobileNo=string&ShippingAddressId=string&ShippingFirstName=string&ShippingLastName=string&ShippingEmail=string&ShippingAddress1=string&ShippingAddress2=string&ShippingCity=string&ShippingStateProvinceId=string&ShippingZipPostalCode=string&ShippingCountryId=string&ShippingMobileNo=string HTTP/1.1
+
+    NSString *requestURL =[NSString stringWithFormat:@"AddOrder?CustomerId=%@&AdvanceAmount=%@&BillingAddressId=%@&BillingFirstName=%@&BillingLastName=%@&BillingEmail=%@&BillingAddress1=%@&BillingAddress2=%@&BillingCity=%@&BillingStateProvinceId=%@&BillingZipPostalCode=%@&BillingCountryId=%@&BillingMobileNo=%@&ShippingAddressId=%@&ShippingFirstName=%@&ShippingLastName=%@&ShippingEmail=%@&ShippingAddress1=%@&ShippingAddress2=%@&ShippingCity=%@&ShippingStateProvinceId=%@&ShippingZipPostalCode=%@&ShippingCountryId=%@&ShippingMobileNo=%@",
+                           [[User sharedUser] customerId],orderInfo[@"AdvanceAmount"],orderInfo[@"BillingAddressId"],orderInfo[@"BillingFirstName"],orderInfo[@"BillingLastName"],orderInfo[@"BillingEmail"],orderInfo[@"BillingAddress1"],orderInfo[@"BillingAddress2"],orderInfo[@"BillingCity"],orderInfo[@"BillingStateProvinceId"],orderInfo[@"BillingZipPostalCode"],orderInfo[@"BillingCountryId"],orderInfo[@"BillingMobileNo"],orderInfo[@"ShippingAddressId"],orderInfo[@"ShippingFirstName"],orderInfo[@"ShippingLastName"],orderInfo[@"ShippingEmail"],orderInfo[@"ShippingAddress1"],orderInfo[@"ShippingAddress2"],orderInfo[@"ShippingCity"],orderInfo[@"ShippingStateProvinceId"],orderInfo[@"ShippingZipPostalCode"],orderInfo[@"ShippingCountryId"],orderInfo[@"ShippingMobileNo"]];
+    [self GETInfoRequestWithURLString:requestURL param:nil completionBlock:block];
+ 
+    
+
+}
+
 -(void)searchProductByKeywords:(NSString*)keywords withCompletionBlock:(APIinfoCompletionBlock)block
 {
 //    GET /mobileservice.asmx/Search?keywords=string
@@ -192,6 +213,46 @@
     
     [self GETInfoRequestWithURLString:requestURL param:nil completionBlock:block];
 
+}
+
+-(void)GetMyOrdersByCustomerID:(NSString*)customerID withCompletionBlock:(APIinfoCompletionBlock)block
+{
+//    GET /mobileservice.asmx/GetCustomerOrders?CustomerId=string
+    NSString *requestURL =[NSString stringWithFormat:@"GetCustomerOrders?CustomerId=%@",customerID];
+    
+    [self GETInfoRequestWithURLString:requestURL param:nil completionBlock:block];
+
+}
+
+-(void)GetMyOrdersWithCompletionBlock:(APIinfoCompletionBlock)block
+{
+    NSString *requestURL =[NSString stringWithFormat:@"GetCustomerOrders?CustomerId=%@",[[User sharedUser] customerId]];
+    
+    [self GETInfoRequestWithURLString:requestURL param:nil completionBlock:block];
+    
+}
+
+-(void)GetShippingAddresseWithCompletionBlock:(APIinfoCompletionBlock)block
+{
+    NSString *requestURL =[NSString stringWithFormat:@"GetShippingAddress?CustomerId=%@",[[User sharedUser] customerId]];
+    
+    [self GETInfoRequestWithURLString:requestURL param:nil completionBlock:block];
+
+}
+-(void)GetBillingAddressesWithCompletionBlock:(APIinfoCompletionBlock)block
+{
+    NSString *requestURL =[NSString stringWithFormat:@"GetBillingAddress?CustomerId==%@",[[User sharedUser] customerId]];
+    
+    [self GETInfoRequestWithURLString:requestURL param:nil completionBlock:block];
+
+}
+
+-(void)UpdateCartItemForCartItemID:(NSString*)cartItemID Quantity:(NSString*)quantity withCompletionBlock:(APIinfoCompletionBlock)block
+{
+    NSString *requestURL =[NSString stringWithFormat:@"UpdateCartItem?CustomerId=%@&ShoppingCartItemId=%@&Quantity=%@",[[User sharedUser] customerId],cartItemID,quantity];
+    
+    [self GETInfoRequestWithURLString:requestURL param:nil completionBlock:block];
+    
 
 }
 
@@ -202,7 +263,10 @@
         if ([urlString isEqualToString:@"GetAllCategories?"]) {
         self.categories = responseObject;
     }
-        
+        if ([urlString isEqualToString:@"GetStateList?CountryId=41"]) {
+            self.stateList = responseObject;
+        }
+
     if (block) {
         block(responseObject, nil);
     }

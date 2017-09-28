@@ -11,7 +11,12 @@
 @interface Description : BaseClass
 {
     __weak IBOutlet UILabel *lblTitle;
-    __weak IBOutlet UITextView *txtVwDesc;
+    __weak IBOutlet UITextView *txtVwOurStory;
+    __weak IBOutlet UITextView *txtVwOffers;
+    __weak IBOutlet UITextView *txtVwContactUs;
+    __weak IBOutlet UITextView *txtVwOrganicFoodCulture;
+    __weak IBOutlet UITextView *txtVwQuality;
+    
 }
 - (IBAction)BackAction:(id)sender;
 

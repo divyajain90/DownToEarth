@@ -83,6 +83,9 @@
         [copy setCustomerName:[self.customerName copyWithZone:zone]];
         [copy setCustomerGuid:[self.customerGuid copyWithZone:zone]];
         [copy setIsLoggedIn:self.isLoggedIn];
+        [copy setShippingAddress:self.shippingAddress];
+        [copy setShippingAddress:self.billingAddress];
+
 
     }
     
@@ -90,7 +93,6 @@
 }
 - (void)encodeWithCoder:(NSCoder *)coder;
 {
-
     
     [coder encodeObject:fName forKey:@"fName"];
     [coder encodeObject:lName forKey:@"lName"];
@@ -101,6 +103,9 @@
     [coder encodeObject:customerName forKey:@"name"];
     [coder encodeObject:customerGuid forKey:@"customerGuid"];
     [coder encodeBool:self.isLoggedIn forKey:@"isLoggedIn"];
+    [coder encodeObject:self.shippingAddress forKey:@"shippingAddress"];
+    [coder encodeObject:self.shippingAddress forKey:@"billingAddress"];
+
 }
 
 - (id)initWithCoder:(NSCoder *)coder;
@@ -119,6 +124,9 @@
         customerName = [coder decodeObjectForKey:@"name"];
         customerGuid = [coder decodeObjectForKey:@"customerGuid"];
         self.isLoggedIn = [coder decodeBoolForKey:@"isLoggedIn"];
+        self.shippingAddress = [coder decodeObjectForKey:@"shippingAddress"];
+        self.billingAddress = [coder decodeObjectForKey:@"billingAddress"];
+
     }
     
     return self;

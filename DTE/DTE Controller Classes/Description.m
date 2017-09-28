@@ -18,29 +18,34 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
     AppDelegate *app = APPDELEGATE;
     if ([app.strSideMenuPage isEqualToString: @"Our story"]) {
         lblTitle.text = @"Our story";
-        txtVwDesc.text = @"Our story";
+        txtVwOurStory.hidden = NO;
  
     }
     else if ([app.strSideMenuPage isEqualToString: @"Organic food culture"]) {
         lblTitle.text = @"Organic food culture";
-        txtVwDesc.text = @"Organic food culture";
+        txtVwOrganicFoodCulture.hidden = NO;
+
 
     }
     else if ([app.strSideMenuPage isEqualToString: @"Guarantee for quality"]) {
         lblTitle.text = @"Guarantee for quality";
-        txtVwDesc.text = @"Guarantee for quality";
+        txtVwQuality.hidden = NO;
+
+    }
+    else if ([app.strSideMenuPage isEqualToString: @"Contact Us"]) {
+        lblTitle.text = @"Contact Us";
+        txtVwContactUs.hidden = NO;
+
         
     }
-//    else if ([app.strSideMenuPage isEqualToString: @"Our story"]) {
-//        lblTitle.text = @"Our story";
-//        txtVwDesc.text = @"Our story";
-//        
-//    }
+    else if ([app.strSideMenuPage isEqualToString: @"Offers"]) {
+        lblTitle.text = @"Offers";
+        txtVwOffers.hidden = NO;
 
+    }
 
 }
 

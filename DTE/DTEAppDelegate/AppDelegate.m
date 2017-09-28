@@ -21,21 +21,25 @@
     
     [NSThread sleepForTimeInterval:3.0];
     [[APIManager sharedManager]getAllCategories];
-//    [BadgeButton sharedButton];
-//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[APIManager sharedManager] getAllStates];
+
     [UIApplication sharedApplication].statusBarHidden = YES;
+    
+
+
+    if (![[User sharedUser]isLoggedIn]) {
+        // Login
+            [self showLoginScreen:NO];
+
+     }
 
     LeftMenuViewController *leftMenu = (LeftMenuViewController*)[GET_STORYBOARD
                                                                  instantiateViewControllerWithIdentifier: @"LeftMenuViewController"];
+    
+    
     [SlideNavigationController sharedInstance].leftMenu = leftMenu;
     [SlideNavigationController sharedInstance].menuRevealAnimationDuration = .18;
     
-////     Creating a custom bar button for right menu
-//    UIButton *button  = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-//    [button setImage:[UIImage imageNamed:@"gear"] forState:UIControlStateNormal];
-//    [button addTarget:[SlideNavigationController sharedInstance] action:@selector(toggleRightMenu) forControlEvents:UIControlEventTouchUpInside];
-//    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-//    [SlideNavigationController sharedInstance].rightBarButtonItem = rightBarButtonItem;
     
     [[NSNotificationCenter defaultCenter] addObserverForName:SlideNavigationControllerDidClose object:nil queue:nil usingBlock:^(NSNotification *note) {
         NSString *menu = note.userInfo[@"menu"];
@@ -57,6 +61,25 @@
     return YES;
 }
 
+-(void)showLoginScreen:(BOOL)login
+{
+    UINavigationController* navigation = [[UINavigationController alloc] initWithRootViewController:[GET_STORYBOARD instantiateViewControllerWithIdentifier:@"Login"]];
+    [self.window makeKeyAndVisible];
+[self.window.rootViewController presentViewController:navigation animated:YES completion:nil];
+//    self.window.rootViewController = navigation;
+
+}
+
+-(void) logout
+{
+    [[User sharedUser] logout ];
+        SlideNavigationController *nav = [[SlideNavigationController alloc] initWithRootViewController:[GET_STORYBOARD instantiateViewControllerWithIdentifier:@"HomeView1"]];
+    [self.window setRootViewController:nav];
+
+    [self showLoginScreen:YES];
+
+
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

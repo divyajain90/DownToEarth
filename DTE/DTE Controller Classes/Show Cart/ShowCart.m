@@ -9,6 +9,8 @@
 #import "ShowCart.h"
 #import "CartItemCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+//#import "SelectAddress.h"
+
 
 @interface ShowCart ()
 
@@ -22,7 +24,7 @@
 //    arrCartItems = [[GET_DEFAULTS objectForKey:@"cartItems"] mutableCopy];
 
     arrCartItems = [[NSMutableArray alloc] init];
-    [self getCartByCustomerID:@"8931"];
+    [self getCartItems];
     
 }
 
@@ -36,13 +38,12 @@
 
 }
 
--(void)getCartByCustomerID:(NSString*)customerID
-{
+-(void)getCartItems{
     if (![APIManager isNetworkAvailable]) {
         
         return;
     }
-    [[APIManager sharedManager] GetCartByCustomerId: customerID withCompletionBlock:^(id  _Nullable response, NSError * _Nullable error) {
+    [[APIManager sharedManager] GetCartByCustomerId: [[User sharedUser] customerId] withCompletionBlock:^(id  _Nullable response, NSError * _Nullable error) {
         if (!error) {
            
             arrCartItems =[response mutableCopy];
@@ -180,7 +181,10 @@
 
 - (IBAction)CheckoutAction:(id)sender {
 //    [self performSegueWithIdentifier:@"EditShippingAddressSegue" sender:nil];
+
+//    [self performSegueWithIdentifier:@"AddOrderSegue" sender:nil];
     
-    [self performSegueWithIdentifier:@"AddOrderSegue" sender:nil];
+    [self performSegueWithIdentifier:@"SelectAddress" sender:nil];
+    
 }
 @end

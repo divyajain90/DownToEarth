@@ -15,8 +15,13 @@
 
 #import "AppDelegate.h"
 
+NSString *strMenu1 =@"";
+NSArray * arrSideMenuLogin;
+NSArray * arrSideMenuLogout;
+
 @implementation LeftMenuViewController
 AppDelegate *app;
+
 #pragma mark - UIViewController Methods -
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -31,7 +36,9 @@ AppDelegate *app;
 	[super viewDidLoad];
 	
     app = APPDELEGATE;
-    
+    arrSideMenuLogin = [[NSArray alloc] initWithObjects:@"",@"Cart",@"My Orders",@"Our story",@"Organic food culture",@"Guarantee for quality",@"Offers",@"Store Locations", @"Contact Us",@"Logout", nil];
+    arrSideMenuLogout = [[NSArray alloc] initWithObjects:@"",@"Cart",@"Login/Sign Up",@"Our story",@"Organic food culture",@"Guarantee for quality",@"Offers",@"Store Locations", @"Contact Us", nil];
+
 //	self.tableView.separatorColor = [UIColor greenColor];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 //    self.tableView.contentInset = UIEdgeInsetsMake(-36, 0, 0, 0);
@@ -52,11 +59,14 @@ AppDelegate *app;
 {
     
     if ([[User sharedUser]isLoggedIn]) {
-        return 7;
+//        return 7;
+       return arrSideMenuLogin.count;
 
     }
    else
-	return 6;
+//	return 6;
+       return arrSideMenuLogout.count;
+
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -66,10 +76,6 @@ AppDelegate *app;
 	return view;
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//	return 40;
-//}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -95,52 +101,74 @@ AppDelegate *app;
         {
             case 0:
                 cell.textLabel.textColor = [UIColor blackColor];
-
+                
                 cell.imageView.image =[UIImage imageNamed:@"Placeholder"]  ;
-                cell.textLabel.text = [@"Hi " stringByAppendingString:[NSString stringWithFormat:@"%@!",[User sharedUser].fName]];
+                strMenu1 = [@"Hi " stringByAppendingString:[NSString stringWithFormat:@"%@!",[User sharedUser].fName]];
+                cell.textLabel.text = strMenu1;
                 cell.contentView.backgroundColor = [UIColor whiteColor];
                 [cell.imageView setContentMode:UIViewContentModeScaleToFill];
-
+                
                 break;
                 
             case 1:
-                cell.textLabel.text = @"Home";
-                cell.imageView.image =[UIImage imageNamed:@"RightArrow"]  ;
-
+                cell.textLabel.text = arrSideMenuLogin[1];
+                cell.imageView.image =[UIImage imageNamed:@"CartGrey"]  ;
+                
                 break;
             case 2:
             {
-                cell.textLabel.text = @"Our story";
-                cell.imageView.image =[UIImage imageNamed:@"RightArrow"]  ;
+                cell.textLabel.text = arrSideMenuLogin[2];
+                cell.imageView.image =[UIImage imageNamed:@"MyOrders"]  ;
                 
             }
                 break;
             case 3:
             {
-                cell.textLabel.text = @"Organic food culture";
-                cell.imageView.image =[UIImage imageNamed:@"RightArrow"]  ;
+                cell.textLabel.text = arrSideMenuLogin[3];
+                cell.imageView.image =[UIImage imageNamed:@"OurStory"]  ;
                 
             }
                 break;
             case 4:
             {
-                cell.textLabel.text = @"Offers";
-                cell.imageView.image =[UIImage imageNamed:@"RightArrow"]  ;
+                cell.textLabel.text = arrSideMenuLogin[4];
+                cell.imageView.image =[UIImage imageNamed:@"FoodCulture"]  ;
                 
             }
                 break;
             case 5:
             {
-                cell.textLabel.text = @"Contact Us";
-                cell.imageView.image =[UIImage imageNamed:@"RightArrow"]  ;
+                cell.textLabel.text = arrSideMenuLogin[5];
+                cell.imageView.image =[UIImage imageNamed:@"Quality"]  ;
                 
             }
                 break;
             case 6:
             {
-                cell.textLabel.text = @"Logout";
-                cell.imageView.image =[UIImage imageNamed:@"RightArrow"]  ;
-  
+                cell.textLabel.text = arrSideMenuLogin[6];
+                cell.imageView.image =[UIImage imageNamed:@"Offers"]  ;
+                
+            }
+                break;
+            case 7:
+            {
+                cell.textLabel.text = arrSideMenuLogin[7];
+                cell.imageView.image =[UIImage imageNamed:@"StoreLocations"]  ;
+                
+            }
+                break;
+            case 8:
+            {
+                cell.textLabel.text = arrSideMenuLogin[8];
+                cell.imageView.image =[UIImage imageNamed:@"ContactUs"]  ;
+                
+            }
+                break;
+            case 9:
+            {
+                cell.textLabel.text = arrSideMenuLogin[9];
+                cell.imageView.image =[UIImage imageNamed:@"Logout"]  ;
+                
             }
                 break;
         }
@@ -208,32 +236,50 @@ AppDelegate *app;
             case 0:
                 break;
                 
-            case 1:
-                vc = [GET_STORYBOARD instantiateViewControllerWithIdentifier: @"HomeView1"];
+            case 1: // Cart
+                vc = [GET_STORYBOARD instantiateViewControllerWithIdentifier: @"ShowCart"];
 
                 break;
-            case 2:
+            case 2: // My Orders
                 
-                vc = [GET_STORYBOARD instantiateViewControllerWithIdentifier: @"Description"];
+                vc = [GET_STORYBOARD instantiateViewControllerWithIdentifier: @"MyOrders"];
                 break;
-            case 3:
-                app.strSideMenuPage = @"Our story";
+            case 3: //Our Story
+                app.strSideMenuPage = arrSideMenuLogin[3];
                 vc = [GET_STORYBOARD instantiateViewControllerWithIdentifier: @"Description"];
                 break;
             case 4:
-                app.strSideMenuPage = @"Organic food culture";
+                app.strSideMenuPage = arrSideMenuLogin[4];
 
                 vc = [GET_STORYBOARD instantiateViewControllerWithIdentifier: @"Description"];
                 break;
             case 5:
-                app.strSideMenuPage = @"Guarantee for quality";
+                app.strSideMenuPage = arrSideMenuLogin[5];
 
                 vc = [GET_STORYBOARD instantiateViewControllerWithIdentifier: @"Description"];
                 break;
-
             case 6:
+                app.strSideMenuPage = arrSideMenuLogin[6];
+                
+                vc = [GET_STORYBOARD instantiateViewControllerWithIdentifier: @"Description"];
+                break;
+            case 7:
+//                app.strSideMenuPage = arrSideMenuLogin[7];
+                
+                vc = [GET_STORYBOARD instantiateViewControllerWithIdentifier: @"Description"];
+                break;
+            case 8:
+                app.strSideMenuPage = arrSideMenuLogin[8];
+                
+                vc = [GET_STORYBOARD instantiateViewControllerWithIdentifier: @"Description"];
+                break;
+
+            case 9:
             {
-                [[User sharedUser] logout ];
+                [APPDELEGATE logout];
+//                [[User sharedUser] logout ];
+//                [self.navigationController pop]
+                
             }
                 break;
         }
