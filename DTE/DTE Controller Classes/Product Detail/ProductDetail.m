@@ -16,7 +16,7 @@
 @end
 FPPopoverController *popoverQty;
 FPPopoverController *popoverWeight;
-
+NSUInteger selectedWeightIndex;
 
 @implementation ProductDetail
 #pragma mark - View lifecycle
@@ -26,6 +26,7 @@ FPPopoverController *popoverWeight;
     // Do any additional setup after loading the view.
     [self performSelector:@selector(setUI) withObject:nil afterDelay:0.4];
     [self updateProductDetails];
+    
 
 }
 
@@ -59,12 +60,38 @@ FPPopoverController *popoverWeight;
     lblProductAvailability.text = @"In Stock";
     txtProductReview.text = self.product[@"SmallDescription"];
     
+    selectedWeightIndex = 0;
+    
 }
 
 #pragma mark - Actions
 
 - (IBAction)AddToCartAction:(id)sender {
    // ALERT_UnderProcess;
+    NSArray * productWeights =self.product[@"ProductWeights"];
+    NSDictionary* prodWeights = [productWeights objectAtIndex:selectedWeightIndex];
+
+    NSMutableDictionary *dictProdInfo =[[NSMutableDictionary alloc] init];
+    dictProdInfo[@"CustomerId"] = @"8931";
+    dictProdInfo[@"ProductVariantAttributeValueID"] = prodWeights[@"ProductVariantAttributeValueId"];
+    dictProdInfo[@"ProductVariantID"] = self.product[@"ProductVariantId"];
+    dictProdInfo[@"Qty"] = lblProductQuantity.text;
+    dictProdInfo[@"Weight"] = [lblProductWeight.text stringByReplacingOccurrencesOfString:@" " withString:@""] ;
+
+
+    
+    if (![APIManager isNetworkAvailable]) {
+//        vwError.hidden = false;
+        
+        return;
+    }
+    [[APIManager sharedManager] addToCartForProduct:dictProdInfo withCompletionBlock:^(id  _Nullable response, NSError * _Nullable error) {
+        if (!error) {
+            NSArray *arr = [response copy];
+            [btnCart updateCart:arr.count];
+        }
+    }];
+
 
 }
 
@@ -145,8 +172,12 @@ FPPopoverController *popoverWeight;
 -(void)selectedItem:(NSString *)item selectedRow:(NSUInteger)rowNum
 {
     if (popoverWeight) {
+        selectedWeightIndex = rowNum;
         [popoverWeight dismissPopoverAnimated:YES];
         lblProductWeight.text = item;
+        NSArray * productWeights =self.product[@"ProductWeights"];
+        NSDictionary* prodWeights = [productWeights objectAtIndex:rowNum];
+        lblProductPrice.text = [@"₹ " stringByAppendingString:prodWeights[@"Price"]];
         popoverWeight= nil;
         
     }

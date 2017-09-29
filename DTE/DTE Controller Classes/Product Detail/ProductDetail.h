@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProductDetail : UIViewController
+@interface ProductDetail : BaseClass
 {
+    __weak IBOutlet BadgeButton *btnCart;
     __weak IBOutlet UIImageView *imgProduct;
     __weak IBOutlet UILabel *lblProductName;
     __weak IBOutlet UILabel *lblProductPrice;

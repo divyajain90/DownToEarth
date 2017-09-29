@@ -13,7 +13,10 @@
 
     __weak IBOutlet UITableView *tblCartItems;
     
-    
+    __weak IBOutlet BadgeButton *btnCart;
+    NSMutableArray *arrCartItems;
+    NSString *strSubTotal;
+
 }
 
 - (IBAction)CheckoutAction:(id)sender;

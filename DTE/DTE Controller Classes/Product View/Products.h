@@ -14,6 +14,7 @@
 
 {
     FPPopoverController *popoverWeight;
+    __weak IBOutlet BadgeButton *btnCart;
 
     __weak IBOutlet UIView *vwError;
     __weak IBOutlet UILabel *lblCategoryName;

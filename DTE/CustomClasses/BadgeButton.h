@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface BadgeButton : UIButton
++(instancetype)sharedButton;
 
-@end
+-(void)updateCart: (NSInteger)value;
+-(void)updateCart;@end

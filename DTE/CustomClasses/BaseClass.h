@@ -16,4 +16,6 @@
 @property(strong,nonatomic)AppDelegate*app;
 
 -(void)showAlertTitle:(NSString*)title message:(NSString*)msg;
+//-(void) initializeCartBarButton ;
+
 @end

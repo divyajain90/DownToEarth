@@ -29,6 +29,9 @@
         if (sharedUser == nil)
         {
             NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultsUserKey];
+            
+  
+
             if (data != nil)
             {
                 sharedUser = [NSKeyedUnarchiver unarchiveObjectWithData:data];
@@ -78,19 +81,18 @@
         [copy setPassword:[self.password copyWithZone:zone]];
         [copy setCustomerId:[self.customerId copyWithZone:zone]];
         [copy setCustomerName:[self.customerName copyWithZone:zone]];
-        
+        [copy setCustomerGuid:[self.customerGuid copyWithZone:zone]];
+        [copy setIsLoggedIn:self.isLoggedIn];
+        [copy setShippingAddress:self.shippingAddress];
+        [copy setShippingAddress:self.billingAddress];
+
+
     }
     
     return copy;
 }
 - (void)encodeWithCoder:(NSCoder *)coder;
 {
-//    [coder encodeObject:itemId forKey:@"itemId"];
-//       [coder encodeInt:promptForPrice forKey:@"promptforprice"];
-//    [coder encodeFloat:itemCost forKey:@"itemcost"];
-//        [coder encodeBool:receiveAlert forKey:@"receivealert"];
-//    [coder encodeObject:supplierName forKey:@"suppliername"];
-    
     
     [coder encodeObject:fName forKey:@"fName"];
     [coder encodeObject:lName forKey:@"lName"];
@@ -99,6 +101,11 @@
     [coder encodeObject:password forKey:@"password"];
     [coder encodeObject:customerId forKey:@"ID"];
     [coder encodeObject:customerName forKey:@"name"];
+    [coder encodeObject:customerGuid forKey:@"customerGuid"];
+    [coder encodeBool:self.isLoggedIn forKey:@"isLoggedIn"];
+    [coder encodeObject:self.shippingAddress forKey:@"shippingAddress"];
+    [coder encodeObject:self.shippingAddress forKey:@"billingAddress"];
+
 }
 
 - (id)initWithCoder:(NSCoder *)coder;
@@ -107,8 +114,6 @@
     
     if (self != nil)
     {
-//        itemId = [coder decodeObjectForKey:@"itemId"];
-//        price = [coder decodeFloatForKey:@"price"];
         
         fName = [coder decodeObjectForKey:@"fName"];
         lName = [coder decodeObjectForKey:@"lName"];
@@ -117,6 +122,11 @@
         password = [coder decodeObjectForKey:@"password"];
         customerId = [coder decodeObjectForKey:@"ID"];
         customerName = [coder decodeObjectForKey:@"name"];
+        customerGuid = [coder decodeObjectForKey:@"customerGuid"];
+        self.isLoggedIn = [coder decodeBoolForKey:@"isLoggedIn"];
+        self.shippingAddress = [coder decodeObjectForKey:@"shippingAddress"];
+        self.billingAddress = [coder decodeObjectForKey:@"billingAddress"];
+
     }
     
     return self;
@@ -197,10 +207,10 @@
                     user.mobile = billingDetails[BillingMobileNo];
                     user.email = billingDetails[BillingEmail];
 
+                    user.isLoggedIn = true;
 
                     [self saveUser];
 
-                    user.isLoggedIn = true;
 
                 }
                 self.completeUserInfo(nil,response);

@@ -15,4 +15,5 @@
 #import "KeychainItemWrapper.h"
 #import "DTEConstants.h"
 #import "User.h"
+#import "BadgeButton.h"
 #endif /* DTEApp_pch */

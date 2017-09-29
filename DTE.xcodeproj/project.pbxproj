@@ -51,7 +51,15 @@
 		5A1505F01EB8804E0000045A /* SignUp.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1505EF1EB8804D0000045A /* SignUp.m */; };
 		5A1505F31EB880840000045A /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1505F21EB880840000045A /* Product.m */; };
 		5A4C385C1EC04E07003C2DE1 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A4C385B1EC04E07003C2DE1 /* User.m */; };
+		5A4CD04E1F72E0DB00B6966D /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A4CD04B1F72E0DB00B6966D /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
+		5A4CD04F1F72E0DB00B6966D /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A4CD04D1F72E0DB00B6966D /* TPKeyboardAvoidingScrollView.m */; };
+		5A4CD0521F72E13D00B6966D /* AddOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A4CD0511F72E13D00B6966D /* AddOrder.m */; };
+		5A4CD0551F78C41800B6966D /* MyOrders.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A4CD0541F78C41800B6966D /* MyOrders.m */; };
+		5A4CD0581F78C67000B6966D /* MyOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A4CD0571F78C67000B6966D /* MyOrderCell.m */; };
+		5A4CD05E1F7AD1D400B6966D /* SelectAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A4CD05D1F7AD1D400B6966D /* SelectAddress.m */; };
+		5A70BFA01F512C9500D0CE5A /* SearchScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BF9F1F512C9500D0CE5A /* SearchScreen.m */; };
 		5AA6BB8C1EC0879D006C83E6 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA6BB8B1EC0879D006C83E6 /* APIManager.m */; };
+		5ABDCA001F6D9B89006FA2BA /* Description.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABDC9FF1F6D9B89006FA2BA /* Description.m */; };
 		8B39D0B1ADC08E175DE44EB0 /* libPods-DTE.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E1D0AD087C4BCD8260C994 /* libPods-DTE.a */; };
 /* End PBXBuildFile section */
 
@@ -145,8 +153,24 @@
 		5A1505F21EB880840000045A /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
 		5A4C385A1EC04E07003C2DE1 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		5A4C385B1EC04E07003C2DE1 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		5A4CD04A1F72E0DB00B6966D /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
+		5A4CD04B1F72E0DB00B6966D /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
+		5A4CD04C1F72E0DB00B6966D /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
+		5A4CD04D1F72E0DB00B6966D /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
+		5A4CD0501F72E13D00B6966D /* AddOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddOrder.h; sourceTree = "<group>"; };
+		5A4CD0511F72E13D00B6966D /* AddOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddOrder.m; sourceTree = "<group>"; };
+		5A4CD0531F78C41800B6966D /* MyOrders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrders.h; sourceTree = "<group>"; };
+		5A4CD0541F78C41800B6966D /* MyOrders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrders.m; sourceTree = "<group>"; };
+		5A4CD0561F78C67000B6966D /* MyOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderCell.h; sourceTree = "<group>"; };
+		5A4CD0571F78C67000B6966D /* MyOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderCell.m; sourceTree = "<group>"; };
+		5A4CD05C1F7AD1D400B6966D /* SelectAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectAddress.h; sourceTree = "<group>"; };
+		5A4CD05D1F7AD1D400B6966D /* SelectAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectAddress.m; sourceTree = "<group>"; };
+		5A70BF9E1F512C9500D0CE5A /* SearchScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchScreen.h; sourceTree = "<group>"; };
+		5A70BF9F1F512C9500D0CE5A /* SearchScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchScreen.m; sourceTree = "<group>"; };
 		5AA6BB8A1EC0879D006C83E6 /* APIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
 		5AA6BB8B1EC0879D006C83E6 /* APIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
+		5ABDC9FE1F6D9B89006FA2BA /* Description.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Description.h; sourceTree = "<group>"; };
+		5ABDC9FF1F6D9B89006FA2BA /* Description.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Description.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +221,10 @@
 				05FCD5391F4B61FA00405EBF /* SelectShippingAddress.m */,
 				05FCD53B1F4B622000405EBF /* SelectPaymentMethod.h */,
 				05FCD53C1F4B622000405EBF /* SelectPaymentMethod.m */,
+				5A4CD0501F72E13D00B6966D /* AddOrder.h */,
+				5A4CD0511F72E13D00B6966D /* AddOrder.m */,
+				5A4CD05C1F7AD1D400B6966D /* SelectAddress.h */,
+				5A4CD05D1F7AD1D400B6966D /* SelectAddress.m */,
 			);
 			path = "Add Shipping Address";
 			sourceTree = "<group>";
@@ -222,6 +250,10 @@
 		5A07E9531ECAF7940029E13E /* 3rd Party */ = {
 			isa = PBXGroup;
 			children = (
+				5A4CD04A1F72E0DB00B6966D /* UIScrollView+TPKeyboardAvoidingAdditions.h */,
+				5A4CD04B1F72E0DB00B6966D /* UIScrollView+TPKeyboardAvoidingAdditions.m */,
+				5A4CD04C1F72E0DB00B6966D /* TPKeyboardAvoidingScrollView.h */,
+				5A4CD04D1F72E0DB00B6966D /* TPKeyboardAvoidingScrollView.m */,
 				5A0FFD961ED5B70700A55BD0 /* Custom Badge */,
 				5A0FFD681ED3443D00A55BD0 /* SlideMenu */,
 				5A0F493C1ED22C1D00B3B5C3 /* FPPopover */,
@@ -284,6 +316,8 @@
 				05FCD52F1F4B5AB500405EBF /* Cart Item cell */,
 				5A07E9BF1ECAF7B80029E13E /* Home Cell */,
 				5A07E9C31ECAF7B80029E13E /* Product Cell */,
+				5A4CD0561F78C67000B6966D /* MyOrderCell.h */,
+				5A4CD0571F78C67000B6966D /* MyOrderCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -367,13 +401,6 @@
 			path = CustomClasses;
 			sourceTree = "<group>";
 		};
-		5A0FFD941ED5B40400A55BD0 /* Checkout */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Checkout;
-			sourceTree = "<group>";
-		};
 		5A0FFD961ED5B70700A55BD0 /* Custom Badge */ = {
 			isa = PBXGroup;
 			children = (
@@ -445,12 +472,17 @@
 			children = (
 				05FCD5301F4B618F00405EBF /* Checkout */,
 				05FCD5281F4B54ED00405EBF /* Show Cart */,
-				5A0FFD941ED5B40400A55BD0 /* Checkout */,
 				5A07E9B81ECAF7A10029E13E /* Product Detail */,
 				5A07E9B91ECAF7A10029E13E /* Product View */,
 				5A1505ED1EB880280000045A /* Sign Up */,
 				5A1505E51EB790BF0000045A /* Login Class */,
 				5A1505E41EB790BF0000045A /* Home */,
+				5A70BF9E1F512C9500D0CE5A /* SearchScreen.h */,
+				5A70BF9F1F512C9500D0CE5A /* SearchScreen.m */,
+				5ABDC9FE1F6D9B89006FA2BA /* Description.h */,
+				5ABDC9FF1F6D9B89006FA2BA /* Description.m */,
+				5A4CD0531F78C41800B6966D /* MyOrders.h */,
+				5A4CD0541F78C41800B6966D /* MyOrders.m */,
 			);
 			path = "DTE Controller Classes";
 			sourceTree = "<group>";
@@ -633,6 +665,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A4CD0521F72E13D00B6966D /* AddOrder.m in Sources */,
 				5A4C385C1EC04E07003C2DE1 /* User.m in Sources */,
 				5A1505F31EB880840000045A /* Product.m in Sources */,
 				5A0F49461ED22C1E00B3B5C3 /* FPPopoverController.m in Sources */,
@@ -640,10 +673,13 @@
 				5A0FFD7C1ED3443D00A55BD0 /* SlideNavigationContorllerAnimatorScaleAndFade.m in Sources */,
 				05FCD5371F4B61DE00405EBF /* EditShippingAddress.m in Sources */,
 				05FCD53A1F4B61FA00405EBF /* SelectShippingAddress.m in Sources */,
+				5A70BFA01F512C9500D0CE5A /* SearchScreen.m in Sources */,
 				5A0FFD871ED3444900A55BD0 /* Utility.m in Sources */,
 				05FCD5471F4B701200405EBF /* SelectAddressCell.m in Sources */,
 				5A0FFD8D1ED55EAA00A55BD0 /* BadgeButton.m in Sources */,
 				5A0FFD861ED3444900A55BD0 /* BaseClass.m in Sources */,
+				5A4CD0581F78C67000B6966D /* MyOrderCell.m in Sources */,
+				5ABDCA001F6D9B89006FA2BA /* Description.m in Sources */,
 				5A1505C81EB77E3C0000045A /* main.m in Sources */,
 				5A0FFD7D1ED3443D00A55BD0 /* SlideNavigationContorllerAnimatorSlide.m in Sources */,
 				05FCD5411F4B6FD800405EBF /* CartItemCell.m in Sources */,
@@ -652,9 +688,12 @@
 				5A07E99A1ECAF7940029E13E /* MBProgressHUD.m in Sources */,
 				5A07E9991ECAF7940029E13E /* KeychainItemWrapper.m in Sources */,
 				5A1505E01EB78AFE0000045A /* AppDelegate.m in Sources */,
+				5A4CD04F1F72E0DB00B6966D /* TPKeyboardAvoidingScrollView.m in Sources */,
 				5A07E9C71ECAF7B80029E13E /* HomeCell.m in Sources */,
 				5A07E99B1ECAF7940029E13E /* Reachability.m in Sources */,
 				5A0F49481ED22C1E00B3B5C3 /* FPPopoverView.m in Sources */,
+				5A4CD0551F78C41800B6966D /* MyOrders.m in Sources */,
+				5A4CD04E1F72E0DB00B6966D /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				5A0FFD9B1ED5B70700A55BD0 /* BadgeStyle.m in Sources */,
 				5A0FFD7F1ED3443D00A55BD0 /* LeftMenuViewController.m in Sources */,
 				05FCD52E1F4B556B00405EBF /* ShowCart.m in Sources */,
@@ -664,6 +703,7 @@
 				5A0FFD9C1ED5B70700A55BD0 /* CustomBadge.m in Sources */,
 				5A0FFD7B1ED3443D00A55BD0 /* SlideNavigationContorllerAnimatorScale.m in Sources */,
 				5AA6BB8C1EC0879D006C83E6 /* APIManager.m in Sources */,
+				5A4CD05E1F7AD1D400B6966D /* SelectAddress.m in Sources */,
 				5A0FFD7A1ED3443D00A55BD0 /* SlideNavigationContorllerAnimatorFade.m in Sources */,
 				5A1505F01EB8804E0000045A /* SignUp.m in Sources */,
 				5A0FFD801ED3443D00A55BD0 /* SlideNavigationController.m in Sources */,

@@ -76,8 +76,8 @@
         [cell.btnProdWeight addTarget:self action:@selector(WeightAction:) forControlEvents:UIControlEventTouchUpInside];
         [cell.btnProdWeight setTag:indexPath.row];
         
-        [cell.btnProdDetail addTarget:self action:@selector(DetailsAction:) forControlEvents:UIControlEventTouchUpInside];
-        [cell.btnProdDetail setTag:indexPath.row];
+//        [cell.btnProdDetail addTarget:self action:@selector(DetailsAction:) forControlEvents:UIControlEventTouchUpInside];
+//        [cell.btnProdDetail setTag:indexPath.row];
 
         [cell.btnAddToCart addTarget:self action:@selector(AddToCartAction:) forControlEvents:UIControlEventTouchUpInside];
         [cell.btnAddToCart setTag:indexPath.row];
@@ -161,8 +161,9 @@
     ALERT_UnderProcess;
 
 }
--(void)DetailsAction
+-(void)DetailsAction:(UIButton*)sender
 {
+    
 }
 
 -(void)WeightAction:(UIButton*)sender
@@ -207,7 +208,6 @@
     dictProdInfo[@"Weight"] = strWeight;
 
     
-    
     [self AddToCart:dictProdInfo];
    
 }
@@ -215,7 +215,6 @@
 
 -(void)AddToCart:(NSMutableDictionary*)prodToAdd
 {
-    
     if (![APIManager isNetworkAvailable]) {
         vwError.hidden = false;
         
@@ -223,9 +222,8 @@
     }
     [[APIManager sharedManager] addToCartForProduct:prodToAdd withCompletionBlock:^(id  _Nullable response, NSError * _Nullable error) {
         if (!error) {
-            
-         
-            
+            NSArray *arr = [response copy];
+            [btnCart updateCart:arr.count];
         }
     }];
 //   ----------------------------------------------------------
@@ -288,6 +286,16 @@
         
         [arrEditedProducts[indexRow]setValue:item forKey:@"Weight"];
         [arrEditedProducts[indexRow]setValue:arrProducts[indexRow][@"ProductWeights"][rowNum][@"Price"] forKey:@"Price"];
+        
+        
+        
+        NSArray * productWeights =arrProducts[indexRow][@"ProductWeights"];
+        NSDictionary* prodWeights = [productWeights objectAtIndex:rowNum];
+        NSString* ProductVariantAttributeValueId = [NSString stringWithFormat:@"%@",prodWeights[@"ProductVariantAttributeValueId"]];
+        
+        [arrEditedProducts[indexRow]setValue:ProductVariantAttributeValueId forKey:@"ProductVariantAttributeValueId"];
+
+        
 
         NSArray *indexPathArray = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:indexRow inSection:0]];
         [tblProducts reloadRowsAtIndexPaths:indexPathArray withRowAnimation:NO];

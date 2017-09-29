@@ -19,14 +19,18 @@
     __weak IBOutlet UITextField *txtCity;
     __weak IBOutlet UITextField *txtState;
     IBOutletCollection(UITextField) NSArray *allTxtFields;
-
+//    NSMutableDictionary *dictDeliveryAddress;
     
 
 }
+@property(nonatomic,strong)NSMutableDictionary *dictDeliveryAddress;
+@property(assign)BOOL *toEdit;
+
+
 - (IBAction)ContinueAction:(id)sender;
 - (IBAction)BackAction:(id)sender;
-- (IBAction)SearchProductAction:(id)sender;
-- (IBAction)CartAction:(id)sender;
+//- (IBAction)SearchProductAction:(id)sender;
+//- (IBAction)CartAction:(id)sender;
 - (IBAction)SettingsAction:(id)sender;
 
 

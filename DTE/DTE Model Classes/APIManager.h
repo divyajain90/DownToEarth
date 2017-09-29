@@ -15,6 +15,7 @@ typedef void(^APIinfoCompletionBlock)(_Nullable id response,NSError *_Nullable e
 @interface APIManager : AFHTTPSessionManager
 
 @property(nonatomic,strong) NSArray* categories;
+@property(nonatomic,strong) NSArray* stateList;
 
 
 
@@ -26,13 +27,28 @@ typedef void(^APIinfoCompletionBlock)(_Nullable id response,NSError *_Nullable e
 -(void)signInUser:(User*)user completionBlock:(APIinfoCompletionBlock)block;
 -(void)getAllBannerWithCompletionHandler:(APIinfoCompletionBlock)block;
 -(void)getAllCategories;
+-(void)getAllStates;
 -(void)getAllCategoriesWithCompletionHandler:(APIinfoCompletionBlock)block;
 
 -(void)getProductsByCategoryID:(NSString*)categoryID withCompletionBlock:(APIinfoCompletionBlock)block;
 -(void)getProductDetailByProductID:(NSString*)productID withCompletionBlock:(APIinfoCompletionBlock)block;
 -(void)addToCartForProduct:(NSDictionary*)productToAdd withCompletionBlock:(APIinfoCompletionBlock)block;
+-(void)searchProductByKeywords:(NSString*)keywords withCompletionBlock:(APIinfoCompletionBlock)block;
+-(void)GetCartByCustomerId:(NSString*)customerID withCompletionBlock:(APIinfoCompletionBlock)block;
+-(void)GetMyOrdersByCustomerID:(NSString*)customerID withCompletionBlock:(APIinfoCompletionBlock)block;
+-(void)GetShippingAddresseWithCompletionBlock:(APIinfoCompletionBlock)block;
+-(void)GetBillingAddressesWithCompletionBlock:(APIinfoCompletionBlock)block;
+-(void)GetMyOrdersWithCompletionBlock:(APIinfoCompletionBlock)block;
+-(void)UpdateCartItemForCartItemID:(NSString*)cartItemID Quantity:(NSString*)quantity withCompletionBlock:(APIinfoCompletionBlock)block;
+-(void)AddOrderWithOrderInfo:(NSMutableDictionary*)orderInfo
+   withCompletionBlock:(APIinfoCompletionBlock)block;
 
 
-//-(void)addToCartForCustumerId:(NSString*)customerID withProductVariantAttributeValueID:(NSString*)productVariantAttributeValueID withProductVariantID:(NSString*)productVariantID:
+
+
+-(void)GETInfoRequestWithUrlString:(NSString*)urlString userINFO:(User*)user completionBlock:(APIinfoCompletionBlock)block;
+-(void)removeProduct:(NSString*)ShoppingCartItemId withCompletionBlock:(APIinfoCompletionBlock)block;
+
+
 @end
 NS_ASSUME_NONNULL_END
