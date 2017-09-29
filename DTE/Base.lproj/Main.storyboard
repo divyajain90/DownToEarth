@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Y5g-dF-TYJ">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Y5g-dF-TYJ">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -197,12 +197,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="257-U9-ZNP">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yn4-vP-XUa">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yn4-vP-XUa">
                                         <rect key="frame" x="10" y="15" width="20" height="20"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="XTa-uk-uLp"/>
-                                            <constraint firstAttribute="width" constant="20" id="m6Q-5r-vUC"/>
-                                        </constraints>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="Back">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -215,48 +212,44 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.08235294118" green="0.37254901959999998" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="Yn4-vP-XUa" firstAttribute="top" secondItem="257-U9-ZNP" secondAttribute="top" constant="15" id="FAM-oZ-W6l"/>
-                                    <constraint firstItem="Yn4-vP-XUa" firstAttribute="leading" secondItem="257-U9-ZNP" secondAttribute="leading" constant="10" id="m4R-Lg-aid"/>
-                                    <constraint firstAttribute="height" constant="50" id="xN7-rh-qNR"/>
+                                    <constraint firstAttribute="height" constant="50" id="8FR-Xu-icZ"/>
                                 </constraints>
                             </view>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Product Found" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1B6-LH-Rcq">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No Product Found" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1B6-LH-Rcq">
                                 <rect key="frame" x="79" y="150" width="163" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QQY-eR-zDL">
-                                <rect key="frame" x="3" y="55" width="239" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="xsU-n8-Uwp" id="QtD-LB-rBy"/>
-                                </connections>
-                            </textField>
-                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qtw-EN-h0J">
+                            <view opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qtw-EN-h0J">
                                 <rect key="frame" x="3" y="55" width="279" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wrq-GG-0P7">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wrq-GG-0P7">
                                         <rect key="frame" x="0.0" y="0.0" width="238" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QQY-eR-zDL">
+                                        <rect key="frame" x="0.0" y="0.0" width="259" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="xsU-n8-Uwp" id="QtD-LB-rBy"/>
+                                        </connections>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="4up-wL-C8F"/>
-                                    <constraint firstItem="wrq-GG-0P7" firstAttribute="leading" secondItem="Qtw-EN-h0J" secondAttribute="leading" id="6gQ-Ji-OrB"/>
-                                    <constraint firstAttribute="bottom" secondItem="wrq-GG-0P7" secondAttribute="bottom" id="Gfz-vi-mtv"/>
-                                    <constraint firstItem="wrq-GG-0P7" firstAttribute="top" secondItem="Qtw-EN-h0J" secondAttribute="top" id="xDe-aw-Dua"/>
-                                    <constraint firstAttribute="trailing" secondItem="wrq-GG-0P7" secondAttribute="trailing" constant="41" id="zrh-kd-cdN"/>
-                                </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="70V-3b-RvY">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="70V-3b-RvY">
                                 <rect key="frame" x="0.0" y="93" width="320" height="475"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.21176470589999999" green="0.5450980392" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.21176470589999999" green="0.5450980392" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
@@ -264,13 +257,10 @@
                                     <outlet property="delegate" destination="xsU-n8-Uwp" id="xZE-XG-31c"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zqa-kk-vH0">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zqa-kk-vH0">
                                 <rect key="frame" x="286" y="55" width="31" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="31" id="RIC-yk-t7D"/>
-                                    <constraint firstAttribute="height" constant="30" id="fVy-BK-mE7"/>
-                                </constraints>
                                 <state key="normal" image="SearchBlack"/>
                                 <connections>
                                     <action selector="SearchAction:" destination="xsU-n8-Uwp" eventType="touchUpInside" id="Aq1-Eg-TPH"/>
@@ -279,26 +269,9 @@
                         </subviews>
                         <color key="backgroundColor" red="0.21176470589999999" green="0.5450980392" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="QQY-eR-zDL" firstAttribute="top" secondItem="257-U9-ZNP" secondAttribute="bottom" constant="5" id="0Gb-zY-vC7"/>
-                            <constraint firstItem="zqa-kk-vH0" firstAttribute="leading" secondItem="QQY-eR-zDL" secondAttribute="trailing" constant="44" id="0dj-PZ-GHE"/>
-                            <constraint firstItem="zqa-kk-vH0" firstAttribute="top" secondItem="257-U9-ZNP" secondAttribute="bottom" constant="5" id="1E0-Ee-1tK"/>
-                            <constraint firstAttribute="trailing" secondItem="70V-3b-RvY" secondAttribute="trailing" id="1Ye-oe-Wvo"/>
-                            <constraint firstItem="1B6-LH-Rcq" firstAttribute="centerX" secondItem="S3U-Un-Do5" secondAttribute="centerX" id="2Xh-NX-TOs"/>
-                            <constraint firstItem="70V-3b-RvY" firstAttribute="leading" secondItem="S3U-Un-Do5" secondAttribute="leading" id="627-hn-saD"/>
-                            <constraint firstItem="QQY-eR-zDL" firstAttribute="top" secondItem="257-U9-ZNP" secondAttribute="bottom" constant="5" id="9nN-Ry-Te3"/>
-                            <constraint firstItem="257-U9-ZNP" firstAttribute="top" secondItem="AIB-ib-NcK" secondAttribute="bottom" id="FNr-0O-KQc"/>
-                            <constraint firstItem="70V-3b-RvY" firstAttribute="top" secondItem="zqa-kk-vH0" secondAttribute="bottom" constant="8" id="Ipk-h1-2XM"/>
-                            <constraint firstItem="zqa-kk-vH0" firstAttribute="leading" secondItem="Qtw-EN-h0J" secondAttribute="trailing" constant="4" id="NdR-ff-VgA"/>
-                            <constraint firstItem="QQY-eR-zDL" firstAttribute="leading" secondItem="S3U-Un-Do5" secondAttribute="leading" constant="3" id="ORc-aX-N2D"/>
-                            <constraint firstItem="QQY-eR-zDL" firstAttribute="leading" secondItem="S3U-Un-Do5" secondAttribute="leading" constant="3" id="dBF-5Z-vsX"/>
-                            <constraint firstItem="Qtw-EN-h0J" firstAttribute="top" secondItem="257-U9-ZNP" secondAttribute="bottom" constant="5" id="fo7-jV-ZDF"/>
-                            <constraint firstItem="257-U9-ZNP" firstAttribute="leading" secondItem="S3U-Un-Do5" secondAttribute="leading" id="jyU-51-9b3"/>
-                            <constraint firstAttribute="trailing" secondItem="zqa-kk-vH0" secondAttribute="trailing" constant="3" id="kfd-BA-EAz"/>
-                            <constraint firstItem="70V-3b-RvY" firstAttribute="top" secondItem="QQY-eR-zDL" secondAttribute="bottom" constant="8" id="lYT-uL-lE4"/>
-                            <constraint firstItem="1B6-LH-Rcq" firstAttribute="top" secondItem="Qtw-EN-h0J" secondAttribute="bottom" constant="65" id="rBj-1s-CJ1"/>
-                            <constraint firstItem="RjU-MT-QDI" firstAttribute="top" secondItem="70V-3b-RvY" secondAttribute="bottom" id="tiu-Uo-WBc"/>
-                            <constraint firstItem="Qtw-EN-h0J" firstAttribute="leading" secondItem="S3U-Un-Do5" secondAttribute="leading" constant="3" id="ugK-8h-HIV"/>
-                            <constraint firstAttribute="trailing" secondItem="257-U9-ZNP" secondAttribute="trailing" id="uhh-r0-PWw"/>
+                            <constraint firstItem="257-U9-ZNP" firstAttribute="top" secondItem="AIB-ib-NcK" secondAttribute="bottom" id="FiL-YT-eMR"/>
+                            <constraint firstAttribute="trailing" secondItem="257-U9-ZNP" secondAttribute="trailing" id="H9k-mH-VZH"/>
+                            <constraint firstItem="257-U9-ZNP" firstAttribute="leading" secondItem="S3U-Un-Do5" secondAttribute="leading" id="K6X-Oh-zxH"/>
                         </constraints>
                     </view>
                     <connections>
@@ -410,7 +383,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Full Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JJc-Dt-qHt">
-                                <rect key="frame" x="16" y="67" width="283" height="38"/>
+                                <rect key="frame" x="16" y="87" width="283" height="38"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="Pdf-6o-pEk"/>
@@ -420,7 +393,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mobile Number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AMr-IC-mdQ">
-                                <rect key="frame" x="16" y="110" width="283" height="38"/>
+                                <rect key="frame" x="16" y="130" width="283" height="38"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="Cce-dR-V5e"/>
@@ -430,7 +403,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Pincode" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ady-42-Uej">
-                                <rect key="frame" x="16" y="153" width="283" height="38"/>
+                                <rect key="frame" x="16" y="173" width="283" height="38"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="lQG-Sc-ZSZ"/>
@@ -440,7 +413,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Flat/House No./Floor/Building" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2fa-p6-lmv">
-                                <rect key="frame" x="16" y="196" width="283" height="38"/>
+                                <rect key="frame" x="16" y="216" width="283" height="38"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="mLl-en-kpO"/>
@@ -450,7 +423,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Colony/Street/Locality" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uDC-Zd-mXe">
-                                <rect key="frame" x="16" y="239" width="283" height="38"/>
+                                <rect key="frame" x="16" y="259" width="283" height="38"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="hjq-Iw-M6R"/>
@@ -460,7 +433,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Landmark(Optional)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0mb-o3-PvJ">
-                                <rect key="frame" x="16" y="282" width="283" height="38"/>
+                                <rect key="frame" x="16" y="302" width="283" height="38"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="QnZ-eU-Vp8"/>
@@ -470,7 +443,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Town/City" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fD9-Jp-SMu">
-                                <rect key="frame" x="16" y="325" width="283" height="38"/>
+                                <rect key="frame" x="16" y="345" width="283" height="38"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="Yhu-yR-8A9"/>
@@ -480,7 +453,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="State" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uNR-xs-Zjb">
-                                <rect key="frame" x="16" y="368" width="283" height="38"/>
+                                <rect key="frame" x="16" y="388" width="283" height="38"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="hXc-Ta-hp3"/>
@@ -509,7 +482,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tkk-zx-d6v">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qO-pa-QsW">
                                         <rect key="frame" x="10" y="15" width="20" height="20"/>
@@ -1761,7 +1734,7 @@
                                 <rect key="frame" x="16" y="58" width="288" height="490"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">Down to Earth is an organic food brand from the house of Morarka Organic. An enterprise, that is the outcome of more than 12 years of organic food research and development and is in accordance with the most stringent organic certification in the industry. 'Down To Earth' is an attempt to provide food that can bring harmony and wellness in life for all.
+                                <string key="text">Down to Earth is an organic food brand from the house of Morarka Organic. An enterprise, that is the outcome of more than 12 years of organic food research and development and is in accordance with the most stringent organic certification in the industry. 'Down To Earth' is an attempt to provide food that can bring harmony and wellness in life for all.
 
 With a plethora of products that gives you the organic substitute for all your food requirements, it is India's contribution to the global organic revolution. Down to Earth is striding ahead with the aim of improving the quality of life by improving the quality of food.
 
@@ -1770,7 +1743,7 @@ To know more about Morarka Organic visit www.morarkaorganic.in &amp; www.morarka
 The Guiding Light
 Our Roots
 Our Growth
-Our Harvest</mutableString>
+Our Harvest</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1779,7 +1752,7 @@ Our Harvest</mutableString>
                                 <rect key="frame" x="16" y="58" width="288" height="490"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.21176470589999999" green="0.5450980392" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <mutableString key="text">Advance deposit benefits:
+                                <string key="text">Advance deposit benefits:
 Any health conscious organic consumer buying regularly all their organic kitchen grocery from "down to earth" gets one more benefit to further reduce their grocery expenses.
 
 Get instant "Top Up" benefits on your advance deposits as follows.
@@ -1800,7 +1773,7 @@ Any organization/institution/companies/societies (having minimum 20 members) can
 
 Once registered, all the members will get automatically entitled for 5% discount (individually) on all their individual purchases on this portal.
 
-For availing this discount kindly Contact now</mutableString>
+For availing this discount kindly Contact now</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1831,13 +1804,13 @@ Phone Number : 0141-2176520</string>
                                 <rect key="frame" x="16" y="58" width="288" height="490"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.21176470589999999" green="0.5450980392" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <mutableString key="text">
+                                <string key="text">
 In any society, the heritage of food, just like language and religion is significantly important to provide an identity to the people. All the crops &amp; their varieties and resultant foods constitute the heritage and represent the genetic diversity of that place. Food and its consumption are an important part of everyday culture and its evolution is an ongoing process.
 
 Organic food has been an outcome of consumer concerns regarding the quality of food. Today the discerning consumer is demanding and willing to pay for food without contamination. Organic is essentially natural and is based on a philosophy that respects nature and its dynamism to meet all the requirements of present and future generations.
 
 For You &amp; Your Family
-For the Earth &amp; Future</mutableString>
+For the Earth &amp; Future</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1846,7 +1819,7 @@ For the Earth &amp; Future</mutableString>
                                 <rect key="frame" x="16" y="58" width="288" height="490"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.21176470589999999" green="0.5450980392" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <mutableString key="text">All Down to Earth products undergo the strictest quality standard checks and are certified by the most stringent certification agencies in the world. Down to Earth is certified by Lacon Quality Certification as per NOP (USDA) and NPOP (Government of India) for Organic Production.
+                                <string key="text">All Down to Earth products undergo the strictest quality standard checks and are certified by the most stringent certification agencies in the world. Down to Earth is certified by Lacon Quality Certification as per NOP (USDA) and NPOP (Government of India) for Organic Production.
 
 Besides organic certification, for the very best quality, the processing &amp; value addition is also in compliance with Food Safety Management System popularly known as ISO 22000:2005. (This covers ISO 9000 &amp; HACCP).
 
@@ -1854,7 +1827,7 @@ All the products sold under the 'Down to Earth' brand at the retail level can be
 
 Certification
 Quality Management
-Fair Trade</mutableString>
+Fair Trade</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -2567,7 +2540,7 @@ Fair Trade</mutableString>
         <image name="downArrow-1" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="bEl-Rl-sLv"/>
         <segue reference="JHb-qU-vbq"/>
-        <segue reference="qfe-Vd-DRN"/>
     </inferredMetricsTieBreakers>
 </document>

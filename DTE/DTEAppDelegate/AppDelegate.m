@@ -31,8 +31,17 @@
         // Login
             [self showLoginScreen:NO];
 
-     }
+     }else
+         [self showHome];
+    
 
+   
+    
+    return YES;
+}
+
+-(void)showHome
+{
     LeftMenuViewController *leftMenu = (LeftMenuViewController*)[GET_STORYBOARD
                                                                  instantiateViewControllerWithIdentifier: @"LeftMenuViewController"];
     
@@ -57,8 +66,6 @@
     }];
     
 
-    
-    return YES;
 }
 
 -(void)showLoginScreen:(BOOL)login

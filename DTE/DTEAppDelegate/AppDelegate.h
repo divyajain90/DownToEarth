@@ -13,6 +13,6 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) NSString* strSideMenuPage;
 -(void) logout;
-
+-(void) showHome;
 @end
 

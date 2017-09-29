@@ -96,7 +96,7 @@
 //                [self performSelector:@selector(BackAction:) withObject:nil afterDelay:2.0];
                 // Dismiss login screen
                 [self dismissViewControllerAnimated:YES completion:nil];
-
+                [APPDELEGATE showHome];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"updateMenu" object:nil];
                 
             }
