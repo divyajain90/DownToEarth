@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import "SlideNavigationController.h"
+
 @interface BaseClass : UIViewController<UIAlertViewDelegate>
 {
 
@@ -17,5 +19,7 @@
 
 -(void)showAlertTitle:(NSString*)title message:(NSString*)msg;
 //-(void) initializeCartBarButton ;
+- (IBAction)CartAction:(id)sender;
+- (IBAction)SearchAction:(id)sender;
 
 @end

@@ -145,17 +145,21 @@
     
 }
 
-- (IBAction)SearchProductAction:(id)sender {
-    ALERT_UnderProcess;
-}
+//- (IBAction)SearchProductAction:(id)sender {
+//    ALERT_UnderProcess;
+//}
 
-- (IBAction)CartAction:(id)sender {
-   
-    ALERT_UnderProcess;
-
-    
-
-}
+//- (IBAction)CartAction:(id)sender {
+//   
+//    UIViewController *vc;
+//    vc = [GET_STORYBOARD instantiateViewControllerWithIdentifier: @"ShowCart"];
+//    
+//    [self.navigationController pushViewController:vc animated:YES];
+////    [[SlideNavigationController sharedInstance] pushViewController:vc animated:YES];
+//
+//    
+//
+//}
 
 - (IBAction)SettingsAction:(id)sender {
     ALERT_UnderProcess;
@@ -163,7 +167,23 @@
 }
 -(void)DetailsAction:(UIButton*)sender
 {
-    
+    NSDictionary * product =arrProducts[sender.tag];
+    [Utility showHUDOnView:self.view];
+    dispatch_time_t deferTime = 0.10f;
+    dispatch_after(deferTime, dispatch_get_main_queue(), ^{
+        [[APIManager sharedManager] getProductDetailByProductID:product[@"ProductId"] withCompletionBlock:^(id  _Nullable response, NSError * _Nullable error) {
+            [Utility hideHUDOnView:self.view];
+            if (!error) {
+                [self performSegueWithIdentifier:@"productDetailSegue" sender:response];
+                
+            }
+            else
+                [self showAlertTitle:@"" message:[error localizedDescription]];
+            
+            
+        }];
+    });
+  
 }
 
 -(void)WeightAction:(UIButton*)sender
@@ -226,54 +246,7 @@
             [btnCart updateCart:arr.count];
         }
     }];
-//   ----------------------------------------------------------
-//    Getting response as:
-//    Printing description of response:
-//    <__NSArrayI 0x600000247bf0>(
-//    {
-//        CreatedOn = "/Date(1503427154517)/";
-//        CustomerSessionGuid = "ac268143-30fd-461c-afc0-adba49378b73";
-//        ProductAttribute = "<Attributes><ProductVariantAttribute ID=\"34\"><ProductVariantAttributeValue><Value>674</Value></ProductVariantAttributeValue></ProductVariantAttribute></Attributes>";
-//        ProductName = "Biryani Pulav Rice";
-//        ProductVariantId = 108;
-//        Quantity = 4;
-//        ShoppingCartItemId = 56154;
-//        ShoppingCartTypeId = 1;
-//        TotalPrice = "\U0930\U0941 700.00";
-//        UnitPrice = "175.00";
-//        UpdatedOn = "/Date(1503466341843)/";
-//        Weight = "Weight: 1 kg";
-//    },
-//    {
-//        CreatedOn = "/Date(1503466119407)/";
-//        CustomerSessionGuid = "ac268143-30fd-461c-afc0-adba49378b73";
-//        ProductAttribute = "<Attributes><ProductVariantAttribute ID=\"323\"><ProductVariantAttributeValue><Value>720</Value></ProductVariantAttributeValue></ProductVariantAttribute></Attributes>";
-//        ProductName = "Wheat Chakki Atta";
-//        ProductVariantId = 170;
-//        Quantity = 4;
-//        ShoppingCartItemId = 56155;
-//        ShoppingCartTypeId = 1;
-//        TotalPrice = "\U0930\U0941 1,180.00";
-//        UnitPrice = "295.00";
-//        UpdatedOn = "/Date(1503466205267)/";
-//        Weight = "Weight: 5 Kg";
-//    },
-//    {
-//        CreatedOn = "/Date(1503466480267)/";
-//        CustomerSessionGuid = "ac268143-30fd-461c-afc0-adba49378b73";
-//        ProductAttribute = "<Attributes><ProductVariantAttribute ID=\"334\"><ProductVariantAttributeValue><Value>755</Value></ProductVariantAttributeValue></ProductVariantAttribute></Attributes>";
-//        ProductName = "Brown Basmati Rice Superfine ";
-//        ProductVariantId = 275;
-//        Quantity = 1;
-//        ShoppingCartItemId = 56156;
-//        ShoppingCartTypeId = 1;
-//        TotalPrice = "\U0930\U0941 185.00";
-//        UnitPrice = "185.00";
-//        UpdatedOn = "/Date(1503466480267)/";
-//        Weight = "Weight: 1 Kg";
-//    }
-//                                )
-//
+
 }
 
 

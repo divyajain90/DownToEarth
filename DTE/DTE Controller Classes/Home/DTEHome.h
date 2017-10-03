@@ -35,9 +35,9 @@
 - (IBAction)changePage:(id)sender;
 - (IBAction)MenuAction:(id)sender;
 - (IBAction)ShareAction:(id)sender;
-- (IBAction)CartAction:(id)sender;
+//- (IBAction)CartAction:(id)sender;
 - (IBAction)SettingsAction:(id)sender;
 - (IBAction)RetryAction:(id)sender;
-- (IBAction)SearchAction:(id)sender;
+//- (IBAction)SearchAction:(id)sender;
 
 @end

@@ -27,7 +27,7 @@
 - (IBAction)WeightAction:(id)sender;
 - (IBAction)BackAction:(id)sender;
 - (IBAction)SearchProductAction:(id)sender;
-- (IBAction)CartAction:(id)sender;
+//- (IBAction)CartAction:(id)sender;
 - (IBAction)SettingsAction:(id)sender;
 
 @end

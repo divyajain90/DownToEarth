@@ -10,12 +10,21 @@
 #import "User.h"
 NS_ASSUME_NONNULL_BEGIN
 
+//#define GetCartAPI @"GetCartByCustomerId?CustomerId=%@"
+
+typedef enum {
+    DTEAPIGetCartItems      = 1,
+    DTEAPIAddToCart,
+    DTEAPIRemoveProductFromCart,
+} DTEAPIType;
+
 typedef void(^APIinfoCompletionBlock)(_Nullable id response,NSError *_Nullable error );
 
 @interface APIManager : AFHTTPSessionManager
 
 @property(nonatomic,strong) NSArray* categories;
 @property(nonatomic,strong) NSArray* stateList;
+@property(nonatomic,strong) NSArray* cartItems;
 
 
 
@@ -34,7 +43,7 @@ typedef void(^APIinfoCompletionBlock)(_Nullable id response,NSError *_Nullable e
 -(void)getProductDetailByProductID:(NSString*)productID withCompletionBlock:(APIinfoCompletionBlock)block;
 -(void)addToCartForProduct:(NSDictionary*)productToAdd withCompletionBlock:(APIinfoCompletionBlock)block;
 -(void)searchProductByKeywords:(NSString*)keywords withCompletionBlock:(APIinfoCompletionBlock)block;
--(void)GetCartByCustomerId:(NSString*)customerID withCompletionBlock:(APIinfoCompletionBlock)block;
+-(void)GetCartWithCompletionBlock:(APIinfoCompletionBlock)block;
 -(void)GetMyOrdersByCustomerID:(NSString*)customerID withCompletionBlock:(APIinfoCompletionBlock)block;
 -(void)GetShippingAddresseWithCompletionBlock:(APIinfoCompletionBlock)block;
 -(void)GetBillingAddressesWithCompletionBlock:(APIinfoCompletionBlock)block;

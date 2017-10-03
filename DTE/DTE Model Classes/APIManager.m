@@ -81,8 +81,6 @@
     
 }
 
-
-
 -(void)POSTInfoRequestWithUrlString:(NSString*)urlString userINFO:(User*)user completionBlock:(APIinfoCompletionBlock)block
 {
 
@@ -119,7 +117,6 @@
     [self GETInfoRequestWithURLString:requestURL param:nil completionBlock:nil];
     
 }
-
 
 -(void)getAllCategoriesWithCompletionHandler:(APIinfoCompletionBlock)block
 {
@@ -168,19 +165,23 @@
 
     
     NSString *requestURL =[NSString stringWithFormat:@"DeleteCartItem?CustomerId=%@&ShoppingCartItemId=%@",@"8931",ShoppingCartItemId];
-    [self GETInfoRequestWithURLString:requestURL param:nil completionBlock:block];
-    
+//    [self GETInfoRequestWithURLString:requestURL param:nil completionBlock:block];
+    [self GETInfoRequestForAPIType:DTEAPIRemoveProductFromCart forRequestURL:requestURL param:nil completionBlock:block];
+
 }
 
 
 -(void)addToCartForProduct:(NSMutableDictionary *)productToAdd withCompletionBlock:(APIinfoCompletionBlock)block
 {
-//    GET /mobileservice.asmx/AddToCart?CustomerId=string&ProductVariantAttributeValueID=string&ProductVeriantID=string&Qty=string&Weight=string
-    
-//    http://demo.downtoearthorganicfood.com/mobileservice.asmx/AddToCart?CustomerId=8931&ProductVariantAttributeValueID=674&ProductVeriantID=108&Qty=1&Weight=1
-    
+////    GET /mobileservice.asmx/AddToCart?CustomerId=string&ProductVariantAttributeValueID=string&ProductVeriantID=string&Qty=string&Weight=string
+//    
+////    http://demo.downtoearthorganicfood.com/mobileservice.asmx/AddToCart?CustomerId=8931&ProductVariantAttributeValueID=674&ProductVeriantID=108&Qty=1&Weight=1
+//    
    NSString *requestURL =[NSString stringWithFormat:@"AddToCart?CustomerId=%@&ProductVariantAttributeValueID=%@&ProductVeriantID=%@&Qty=%@&Weight=%@",productToAdd[@"CustomerId"],productToAdd[@"ProductVariantAttributeValueID"],productToAdd[@"ProductVariantID"],productToAdd[@"Qty"],productToAdd[@"Weight"]];
-    [self GETInfoRequestWithURLString:requestURL param:nil completionBlock:block];
+//    [self GETInfoRequestWithURLString:requestURL param:nil completionBlock:block];
+    
+    [self GETInfoRequestForAPIType:DTEAPIAddToCart forRequestURL:requestURL param:nil completionBlock:block];
+
 
 }
 
@@ -206,12 +207,15 @@
     
 }
 
--(void)GetCartByCustomerId:(NSString*)customerID withCompletionBlock:(APIinfoCompletionBlock)block
+-(void)GetCartWithCompletionBlock:(APIinfoCompletionBlock)block
 {
 //    GET /mobileservice.asmx/GetCartByCustomerId?CustomerId=string HTTP/1.1
-    NSString *requestURL =[NSString stringWithFormat:@"GetCartByCustomerId?CustomerId=%@",customerID];
+    NSString *requestURL =[NSString stringWithFormat:@"GetCartByCustomerId?CustomerId=%@",[[User sharedUser] customerId]];
     
-    [self GETInfoRequestWithURLString:requestURL param:nil completionBlock:block];
+//    [self GETInfoRequestWithURLString:requestURL param:nil completionBlock:block];
+    
+    [self GETInfoRequestForAPIType:DTEAPIGetCartItems forRequestURL:requestURL param:nil completionBlock:block];
+
 
 }
 
@@ -255,6 +259,29 @@
     
 
 }
+
+
+-(void)GETInfoRequestForAPIType:(DTEAPIType)APIType forRequestURL:(NSString*)urlString param:(NSDictionary*)param completionBlock:(APIinfoCompletionBlock)block
+{
+
+    [self GET:urlString parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (APIType == DTEAPIGetCartItems || APIType == DTEAPIAddToCart || APIType == DTEAPIRemoveProductFromCart) {
+            self.cartItems = responseObject;
+        }
+        if (block) {
+            block(responseObject, nil);
+        }
+        
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (block) {
+            block(nil, error);
+        }
+        
+    }];
+
+}
+
 
 -(void)GETInfoRequestWithURLString:(NSString*)urlString param:(NSDictionary*)param completionBlock:(APIinfoCompletionBlock)block
 {

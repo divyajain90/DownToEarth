@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		053887B41F83FA8800253A96 /* ProceedPayment.m in Sources */ = {isa = PBXBuildFile; fileRef = 053887B31F83FA8800253A96 /* ProceedPayment.m */; };
 		05FCD52E1F4B556B00405EBF /* ShowCart.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FCD52D1F4B556B00405EBF /* ShowCart.m */; };
 		05FCD5371F4B61DE00405EBF /* EditShippingAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FCD5361F4B61DE00405EBF /* EditShippingAddress.m */; };
 		05FCD53A1F4B61FA00405EBF /* SelectShippingAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FCD5391F4B61FA00405EBF /* SelectShippingAddress.m */; };
@@ -65,6 +66,8 @@
 
 /* Begin PBXFileReference section */
 		01E1D0AD087C4BCD8260C994 /* libPods-DTE.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DTE.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		053887B21F83FA8800253A96 /* ProceedPayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProceedPayment.h; sourceTree = "<group>"; };
+		053887B31F83FA8800253A96 /* ProceedPayment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProceedPayment.m; sourceTree = "<group>"; };
 		05FCD52C1F4B556B00405EBF /* ShowCart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowCart.h; sourceTree = "<group>"; };
 		05FCD52D1F4B556B00405EBF /* ShowCart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowCart.m; sourceTree = "<group>"; };
 		05FCD5351F4B61DE00405EBF /* EditShippingAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditShippingAddress.h; sourceTree = "<group>"; };
@@ -225,6 +228,8 @@
 				5A4CD0511F72E13D00B6966D /* AddOrder.m */,
 				5A4CD05C1F7AD1D400B6966D /* SelectAddress.h */,
 				5A4CD05D1F7AD1D400B6966D /* SelectAddress.m */,
+				053887B21F83FA8800253A96 /* ProceedPayment.h */,
+				053887B31F83FA8800253A96 /* ProceedPayment.m */,
 			);
 			path = "Add Shipping Address";
 			sourceTree = "<group>";
@@ -686,6 +691,7 @@
 				5A0FFD8A1ED46F1000A55BD0 /* Category.m in Sources */,
 				5A1505EC1EB7910D0000045A /* DTEHome.m in Sources */,
 				5A07E99A1ECAF7940029E13E /* MBProgressHUD.m in Sources */,
+				053887B41F83FA8800253A96 /* ProceedPayment.m in Sources */,
 				5A07E9991ECAF7940029E13E /* KeychainItemWrapper.m in Sources */,
 				5A1505E01EB78AFE0000045A /* AppDelegate.m in Sources */,
 				5A4CD04F1F72E0DB00B6966D /* TPKeyboardAvoidingScrollView.m in Sources */,

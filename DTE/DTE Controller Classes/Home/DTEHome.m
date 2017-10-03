@@ -286,13 +286,6 @@
     popController.barButtonItem = self.navigationItem.leftBarButtonItem;
 }
 
-- (IBAction)CartAction:(id)sender {
-    
-    
-    [self performSegueWithIdentifier:@"CartItemsSegue" sender:nil];
-    
-}
-
 - (IBAction)SettingsAction:(id)sender {
     ALERT_UnderProcess;
 }
@@ -301,10 +294,6 @@
     [self getCategory];
 }
 
-- (IBAction)SearchAction:(id)sender {
-    
-    [self performSegueWithIdentifier:@"SearchProdSegue" sender:txtSearch.text];
-}
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)sView

@@ -114,6 +114,10 @@
 }
 
 - (IBAction)AddOrderAction:(id)sender {
+    if (![self validateDetails]) {
+        return;
+    }
+    
     NSMutableDictionary *orderInfo = [[NSMutableDictionary alloc] init];
     orderInfo[@"AdvanceAmount"] = @"0";
 
@@ -148,6 +152,47 @@
     
     [self addOrder:orderInfo];
 }
+
+-(BOOL)validateDetails
+{BOOL isValidate = YES;
+    NSString *str;
+    for (UITextField *txt in allTxtFields) {
+        str = [txt.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+        if (str.length == 0) {
+            [self showAlertTitle:@"Message" message:@"Please fill all the details"];
+            isValidate = NO;
+            break;
+        }
+        
+    }
+    if (isValidate) {
+        if ([self isValidEmail:txtBillingEmail] && [self isValidEmail:txtShippingEmail]) {
+                    }
+        else
+            isValidate = NO;
+    }
+    return isValidate;
+}
+
+-(BOOL)isValidEmail:(UITextField*)txtEmail
+{
+    BOOL isValidMail = YES;
+    NSString *regExPattern = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    
+    NSRegularExpression *regEx = [[NSRegularExpression alloc] initWithPattern:regExPattern options:NSRegularExpressionCaseInsensitive error:nil];
+    NSUInteger regExMatches = [regEx numberOfMatchesInString:txtEmail.text options:0 range:NSMakeRange(0, [txtEmail.text length])];
+    NSLog(@"regExMatches %lu", (unsigned long)regExMatches);
+    if (regExMatches == 0 && txtEmail.text.length>0){
+        [self showAlertTitle:@"" message:@"Please enter a valid email."];
+        txtEmail.text = nil;
+        isValidMail = NO;
+    }
+    return isValidMail;
+    
+}
+
+
+
 
 
 #pragma mark - TextField delegates
@@ -222,25 +267,6 @@
     
 }
 
--(BOOL)isValidEmail:(UITextField*)txtEmail
-{
-    BOOL isValidMail = YES;
-    NSString *regExPattern = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
-    
-    NSRegularExpression *regEx = [[NSRegularExpression alloc] initWithPattern:regExPattern options:NSRegularExpressionCaseInsensitive error:nil];
-    NSUInteger regExMatches = [regEx numberOfMatchesInString:txtEmail.text options:0 range:NSMakeRange(0, [txtEmail.text length])];
-    NSLog(@"regExMatches %lu", (unsigned long)regExMatches);
-    if (regExMatches == 0 && txtEmail.text.length>0){
-        [self showAlertTitle:@"" message:@"Please enter a valid email."];
-        txtEmail.text = nil;
-        isValidMail = NO;
-    }
-    return isValidMail;
-    
-}
-
-
-
 #pragma mark - FPPopover Delegate
 
 -(void)selectedItem:(NSString*)item selectedRow:(NSUInteger)rowNum
@@ -253,6 +279,8 @@
         txtShippingState.text = item;
         selectedShippingIndex = rowNum;
     }
+    [popoverStateList dismissPopoverAnimated:YES];
+
     }
 
 - (void)presentedNewPopoverController:(FPPopoverController *)newPopoverController
@@ -270,7 +298,6 @@
 -(void)addOrder:(NSMutableDictionary*)order
 {
     if (![APIManager isNetworkAvailable]) {
-        
         return;
     }
     [[APIManager sharedManager] AddOrderWithOrderInfo:order withCompletionBlock:^(id  _Nullable response, NSError * _Nullable error) {

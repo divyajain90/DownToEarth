@@ -143,10 +143,10 @@ NSUInteger selectedWeightIndex;
 {
     ALERT_UnderProcess;
 }
-- (IBAction)CartAction:(id)sender
-{
-    ALERT_UnderProcess;
-}
+//- (IBAction)CartAction:(id)sender
+//{
+//    ALERT_UnderProcess;
+//}
 - (IBAction)SettingsAction:(id)sender
 {
     ALERT_UnderProcess;

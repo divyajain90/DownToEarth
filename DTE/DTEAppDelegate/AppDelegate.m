@@ -19,9 +19,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch
     
-    [NSThread sleepForTimeInterval:3.0];
+    [[APIManager sharedManager] GetCartWithCompletionBlock:^(id  _Nullable response, NSError * _Nullable error) {
+
     [[APIManager sharedManager]getAllCategories];
     [[APIManager sharedManager] getAllStates];
+    
+    }];
+    [NSThread sleepForTimeInterval:3.0];
 
     [UIApplication sharedApplication].statusBarHidden = YES;
     

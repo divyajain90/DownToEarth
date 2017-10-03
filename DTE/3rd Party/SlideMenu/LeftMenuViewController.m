@@ -36,7 +36,7 @@ AppDelegate *app;
 	[super viewDidLoad];
 	
     app = APPDELEGATE;
-    arrSideMenuLogin = [[NSArray alloc] initWithObjects:@"",@"Cart",@"My Orders",@"Our story",@"Organic food culture",@"Guarantee for quality",@"Offers",@"Store Locations", @"Contact Us",@"Logout", nil];
+    arrSideMenuLogin = [[NSArray alloc] initWithObjects:@"",@" Cart",@" My Orders",@" Our story",@" Organic food culture",@" Guarantee for quality",@" Offers",@" Store Locations", @" Contact Us",@" Logout", nil];
     arrSideMenuLogout = [[NSArray alloc] initWithObjects:@"",@"Cart",@"Login/Sign Up",@"Our story",@"Organic food culture",@"Guarantee for quality",@"Offers",@"Store Locations", @"Contact Us", nil];
 
 //	self.tableView.separatorColor = [UIColor greenColor];

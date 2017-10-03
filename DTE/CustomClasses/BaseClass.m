@@ -35,4 +35,20 @@
     [self presentViewController:alertController animated:YES completion:nil];
     
 }
+- (IBAction)CartAction:(id)sender {
+//    [self performSegueWithIdentifier:@"CartItemsSegue" sender:nil];
+    UIViewController *vc;
+    vc = [GET_STORYBOARD instantiateViewControllerWithIdentifier: @"ShowCart"];
+    
+    [[SlideNavigationController sharedInstance] pushViewController:vc animated:YES];
+
+}
+
+- (IBAction)SearchAction:(id)sender {
+    UIViewController *vc;
+    vc = [GET_STORYBOARD instantiateViewControllerWithIdentifier: @"SearchScreen"];
+    
+    [[SlideNavigationController sharedInstance] pushViewController:vc animated:YES];
+
+}
 @end

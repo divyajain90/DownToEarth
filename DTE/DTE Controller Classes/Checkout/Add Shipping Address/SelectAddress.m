@@ -120,7 +120,7 @@ NSUInteger selectedBillingIndex;
     orderInfo[@"BillingCity"]= dictBilling[@"City"];
     orderInfo[@"BillingStateProvinceId"]= dictBilling[@"StateProvinceId"];
     orderInfo[@"BillingZipPostalCode"]= dictBilling[@"ZipPostalCode"];
-    orderInfo[@"BillingCountryId"]= dictBilling[@"CountryId"];
+    orderInfo[@"BillingCountryId"]= @"41";
     orderInfo[@"BillingMobileNo"]= dictBilling[@"MobileNo"];
     
     NSDictionary * dictShipping= [[User sharedUser] shippingAddress][selectedShippingIndex];
@@ -134,7 +134,7 @@ NSUInteger selectedBillingIndex;
     orderInfo[@"ShippingCity"]= dictShipping[@"City"];
     orderInfo[@"ShippingStateProvinceId"]= dictShipping[@"StateProvinceId"];
     orderInfo[@"ShippingZipPostalCode"]= dictShipping[@"ZipPostalCode"];
-    orderInfo[@"ShippingCountryId"]= dictShipping[@"CountryId"];
+    orderInfo[@"ShippingCountryId"]= @"41";
     orderInfo[@"ShippingMobileNo"]= dictShipping[@"MobileNo"];
     
     [self addOrder:orderInfo];
@@ -155,18 +155,16 @@ NSUInteger selectedBillingIndex;
     [[APIManager sharedManager] AddOrderWithOrderInfo:order withCompletionBlock:^(id  _Nullable response, NSError * _Nullable error) {
         if (!error) {
             
-            
+            [Utility showMessage:@"Order added successfully!!" OnView:self.view];
+            GO_BACK;
         }
     }];
-    
-    
 }
 
 #pragma mark - FPPopover Delegate
 
 -(void)selectedItem:(NSString*)item selectedRow:(NSUInteger)rowNum
 {
-    
     if (isShippingAddress) {
         txtShippingAddress.text = item;
         selectedShippingIndex = rowNum;
@@ -178,9 +176,10 @@ NSUInteger selectedBillingIndex;
     if ((selectedBillingIndex >0) && (selectedShippingIndex >0)) {
         btnSelect.enabled = YES;
     }
-    
+    [popoverStateList dismissPopoverAnimated:YES];
     
 }
+
 - (void)presentedNewPopoverController:(FPPopoverController *)newPopoverController
           shouldDismissVisiblePopover:(FPPopoverController*)visiblePopoverController
 {

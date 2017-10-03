@@ -43,7 +43,7 @@
         
         return;
     }
-    [[APIManager sharedManager] GetCartByCustomerId: [[User sharedUser] customerId] withCompletionBlock:^(id  _Nullable response, NSError * _Nullable error) {
+    [[APIManager sharedManager] GetCartWithCompletionBlock:^(id  _Nullable response, NSError * _Nullable error) {
         if (!error) {
            
             arrCartItems =[response mutableCopy];
@@ -148,7 +148,7 @@
     
         [[APIManager sharedManager] removeProduct:prodToDisplay[@"ShoppingCartItemId"] withCompletionBlock:^(id  _Nullable response, NSError * _Nullable error) {
             if (!error) {
-                [btnCart updateCart:-1];
+                [btnCart updateCart:arrCartItems.count];
 
                 arrCartItems=[response mutableCopy];
                 [tblCartItems reloadData];
