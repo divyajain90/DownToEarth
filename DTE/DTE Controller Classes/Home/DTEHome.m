@@ -30,6 +30,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    [self initializeCartBarButton];
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        //load your data here.
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //update UI in main thread.
+            [btnCart updateCart];
+
+        });
+    });
+ 
+
     [self.navigationController setNavigationBarHidden:YES];
     [self setNeedsStatusBarAppearanceUpdate];
     myScrollView.delegate = self;
@@ -51,7 +61,15 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [Utility hideHUDOnView:self.view];
-    [btnCart updateCart];
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        //load your data here.
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //update UI in main thread.
+            [btnCart updateCart];
+            
+        });
+    });        
+
 }
 - (UIStatusBarStyle)preferredStatusBarStyle
 {

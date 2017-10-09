@@ -22,6 +22,13 @@ NSUInteger selectedBillingIndex;
     isShippingAddress = YES;
     arrShippingAddress = [[NSMutableArray alloc] init];
     arrBillingAddress = [[NSMutableArray alloc] init];
+    btnShipping.layer.cornerRadius = 4;
+    btnShipping.layer.borderColor = LightGreenColor.CGColor;
+    btnShipping.layer.borderWidth = 1;
+    btnBilling.layer.cornerRadius = 4;
+    btnBilling.layer.borderColor = LightGreenColor.CGColor;
+    btnBilling.layer.borderWidth = 1;
+
     if ([[User sharedUser] shippingAddress].count) {
         
         for (int i=0; i<[[User sharedUser] shippingAddress].count; i++) {

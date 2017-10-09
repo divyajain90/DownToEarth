@@ -15,6 +15,7 @@
     __weak IBOutlet UITableView *tblCartItems;
     __weak IBOutlet UIButton *btnCheckout;
     
+    __weak IBOutlet UIButton *btnApplyCoupon;
     __weak IBOutlet UILabel *lblDiscount;
     __weak IBOutlet BadgeButton *btnCart;
     NSMutableArray *arrCartItems;

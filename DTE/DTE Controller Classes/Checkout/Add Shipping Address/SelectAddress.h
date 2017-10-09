@@ -23,6 +23,9 @@
     NSMutableArray * arrShippingAddress;
     NSMutableArray * arrBillingAddress;
 
+    __weak IBOutlet UIButton *btnShipping;
+    __weak IBOutlet UIButton *btnBilling;
+
 
 }
 - (IBAction)BackAction:(id)sender;

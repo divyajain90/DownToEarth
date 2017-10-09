@@ -20,6 +20,8 @@
 #define BaseGreenColor \
 [UIColor colorWithRed:54.0/255.0 green:139/255.0 blue:32.0/255.0 alpha:1.0]
 
+#define LightGreenColor \
+[UIColor colorWithRed:101.0/255.0 green:226/255.0 blue:68.0/255.0 alpha:1.0]
 
 
 #define BSE_URL  @"http://demo.downtoearthorganicfood.com/mobileservice.asmx/"

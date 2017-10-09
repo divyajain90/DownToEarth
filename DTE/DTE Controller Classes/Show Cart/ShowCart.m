@@ -29,6 +29,17 @@
     [self setUIForTextBox:txtCouponCode];
     [self getCartItems];
 //    mainScroll.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
+    [self updatePrice:@"0"];
+    btnCheckout.layer.cornerRadius = 4;
+    btnCheckout.layer.masksToBounds = YES;
+    btnApplyCoupon.layer.cornerRadius = 4;
+    btnApplyCoupon.layer.masksToBounds = YES;
+
+
+}
+-(void)updatePrice:(NSString*)price
+{
+    lblTotalPrice.text= price;
 
 }
 
@@ -60,7 +71,10 @@
             for (int i=0; i<arrCartItems.count; i++) {
             
             }
-            lblTotalPrice.text= arrCartItems[0][@"TotalPrice"];
+            if (arrCartItems.count) {
+                [self updatePrice:arrCartItems[0][@"TotalPrice"]];
+  
+            }
             [tblCartItems reloadData];
         }
     }];
@@ -77,21 +91,21 @@
 #pragma mark - TableView Methods
 
 #pragma mark -- UITableViewDatasource
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
+//-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+//{
+//    return 1;
+//}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return arrCartItems.count+1;
-    }
+//    if (section == 0) {
+        return arrCartItems.count;
+//    }
 //    else if (section == 1)
 //    return 1;
 //    return section == 0?arrCartItems.count:1;
 
-    return 0;
+//    return 0;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -160,6 +174,11 @@
                 [btnCart updateCart:arrCartItems.count];
 
                 arrCartItems=[response mutableCopy];
+                if (arrCartItems.count) {
+                    [self updatePrice:arrCartItems[0][@"TotalPrice"]];
+                    
+                }
+
                 [tblCartItems reloadData];
             }
         }];
@@ -192,12 +211,24 @@
 - (IBAction)SettingsAction:(id)sender{}
 
 - (IBAction)ApplyAction:(id)sender {
-    if (txtCouponCode.text.length) {
-        
-    }
+    if (!txtCouponCode.text.length) {
+        [Utility showMessage:@"Please enter a coupon code!" OnView:self.view];
+    }else{
     lblDiscount.text = @"Discount:- 0%";
     lblDiscount.hidden = false;
-    constCheckoutTop.constant = constCheckoutTop.constant + 40;
+        NSString * priceTotal = @"0";
+        if (arrCartItems.count) {
+            priceTotal = arrCartItems[0][@"TotalPrice"];
+        }
+        NSMutableAttributedString * price =
+        [[NSMutableAttributedString alloc] initWithString:priceTotal
+                                        attributes:@{NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle)}];
+        NSString *atrPrice = [NSString stringWithFormat:@" %@",priceTotal];
+        NSAttributedString * str = [[NSAttributedString alloc] initWithString:atrPrice];
+        [price appendAttributedString:str];
+        lblTotalPrice.attributedText = price;
+    constCheckoutTop.constant = constCheckoutTop.constant + 20;
+    }
 }
 
 
@@ -205,9 +236,12 @@
 //    [self performSegueWithIdentifier:@"EditShippingAddressSegue" sender:nil];
 
 //    [self performSegueWithIdentifier:@"AddOrderSegue" sender:nil];
-    
-    [self performSegueWithIdentifier:@"SelectAddress" sender:nil];
-    
+    if (arrCartItems.count) {
+        [self performSegueWithIdentifier:@"SelectAddress" sender:nil];
+
+    }
+else
+    [Utility showMessage:@"No item in the cart!" OnView:self.view];
 }
 
 
