@@ -36,7 +36,7 @@
     CGFloat y;
     y= 0;
     CGPoint point = CGPointMake(self.frame.size.width-badge.frame.size.width/2 + 3, y);
-    CGSize size = CGSizeMake(15, 15);
+    CGSize size = CGSizeMake(13, 13);
     CGRect rect = CGRectMake(point.x, point.y, size.width, size.height);
     [badge setFrame:rect];
     

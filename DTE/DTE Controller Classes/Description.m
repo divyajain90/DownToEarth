@@ -19,33 +19,39 @@
     // Do any additional setup after loading the view.
     
     AppDelegate *app = APPDELEGATE;
-    if ([app.strSideMenuPage isEqualToString: @"Our story"]) {
+    if ([app.strSideMenuPage isEqualToString: @" Our story"]) {
         lblTitle.text = @"Our story";
         txtVwOurStory.hidden = NO;
  
     }
-    else if ([app.strSideMenuPage isEqualToString: @"Organic food culture"]) {
+    else if ([app.strSideMenuPage isEqualToString: @" Organic food culture"]) {
         lblTitle.text = @"Organic food culture";
         txtVwOrganicFoodCulture.hidden = NO;
 
 
     }
-    else if ([app.strSideMenuPage isEqualToString: @"Guarantee for quality"]) {
+    else if ([app.strSideMenuPage isEqualToString: @" Guarantee for quality"]) {
         lblTitle.text = @"Guarantee for quality";
         txtVwQuality.hidden = NO;
 
     }
-    else if ([app.strSideMenuPage isEqualToString: @"Contact Us"]) {
+    else if ([app.strSideMenuPage isEqualToString: @" Contact Us"]) {
         lblTitle.text = @"Contact Us";
         txtVwContactUs.hidden = NO;
 
         
     }
-    else if ([app.strSideMenuPage isEqualToString: @"Offers"]) {
+    else if ([app.strSideMenuPage isEqualToString: @" Offers"]) {
         lblTitle.text = @"Offers";
         txtVwOffers.hidden = NO;
 
     }
+    else if ([app.strSideMenuPage isEqualToString: @" Store Locations"]) {
+        lblTitle.text = @"Store Locations";
+        txtVwStoreLocations.hidden = NO;
+        
+    }
+
 
 }
 

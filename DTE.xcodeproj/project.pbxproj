@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		053887B41F83FA8800253A96 /* ProceedPayment.m in Sources */ = {isa = PBXBuildFile; fileRef = 053887B31F83FA8800253A96 /* ProceedPayment.m */; };
+		053887B81F8742BB00253A96 /* LeftMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 053887B61F8742BB00253A96 /* LeftMenuCell.m */; };
+		053887B91F8742BB00253A96 /* LeftMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 053887B71F8742BB00253A96 /* LeftMenuCell.xib */; };
 		05FCD52E1F4B556B00405EBF /* ShowCart.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FCD52D1F4B556B00405EBF /* ShowCart.m */; };
 		05FCD5371F4B61DE00405EBF /* EditShippingAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FCD5361F4B61DE00405EBF /* EditShippingAddress.m */; };
 		05FCD53A1F4B61FA00405EBF /* SelectShippingAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FCD5391F4B61FA00405EBF /* SelectShippingAddress.m */; };
@@ -68,6 +70,9 @@
 		01E1D0AD087C4BCD8260C994 /* libPods-DTE.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DTE.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		053887B21F83FA8800253A96 /* ProceedPayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProceedPayment.h; sourceTree = "<group>"; };
 		053887B31F83FA8800253A96 /* ProceedPayment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProceedPayment.m; sourceTree = "<group>"; };
+		053887B51F8742BB00253A96 /* LeftMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenuCell.h; sourceTree = "<group>"; };
+		053887B61F8742BB00253A96 /* LeftMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenuCell.m; sourceTree = "<group>"; };
+		053887B71F8742BB00253A96 /* LeftMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftMenuCell.xib; sourceTree = "<group>"; };
 		05FCD52C1F4B556B00405EBF /* ShowCart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowCart.h; sourceTree = "<group>"; };
 		05FCD52D1F4B556B00405EBF /* ShowCart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowCart.m; sourceTree = "<group>"; };
 		05FCD5351F4B61DE00405EBF /* EditShippingAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditShippingAddress.h; sourceTree = "<group>"; };
@@ -323,6 +328,9 @@
 				5A07E9C31ECAF7B80029E13E /* Product Cell */,
 				5A4CD0561F78C67000B6966D /* MyOrderCell.h */,
 				5A4CD0571F78C67000B6966D /* MyOrderCell.m */,
+				053887B51F8742BB00253A96 /* LeftMenuCell.h */,
+				053887B61F8742BB00253A96 /* LeftMenuCell.m */,
+				053887B71F8742BB00253A96 /* LeftMenuCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -606,6 +614,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05FCD5481F4B701200405EBF /* SelectAddressCell.xib in Resources */,
+				053887B91F8742BB00253A96 /* LeftMenuCell.xib in Resources */,
 				5A1505D61EB77E3C0000045A /* LaunchScreen.storyboard in Resources */,
 				5A07E9C81ECAF7B80029E13E /* HomeCell.xib in Resources */,
 				5A1505D31EB77E3C0000045A /* Assets.xcassets in Resources */,
@@ -695,6 +704,7 @@
 				5A07E9991ECAF7940029E13E /* KeychainItemWrapper.m in Sources */,
 				5A1505E01EB78AFE0000045A /* AppDelegate.m in Sources */,
 				5A4CD04F1F72E0DB00B6966D /* TPKeyboardAvoidingScrollView.m in Sources */,
+				053887B81F8742BB00253A96 /* LeftMenuCell.m in Sources */,
 				5A07E9C71ECAF7B80029E13E /* HomeCell.m in Sources */,
 				5A07E99B1ECAF7940029E13E /* Reachability.m in Sources */,
 				5A0F49481ED22C1E00B3B5C3 /* FPPopoverView.m in Sources */,

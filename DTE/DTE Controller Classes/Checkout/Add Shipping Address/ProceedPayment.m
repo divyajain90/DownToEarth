@@ -17,7 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-}
+    NSString *urlString = [NSString stringWithFormat:@"http://demo.downtoearthorganicfood.com/rdpgccApp.aspx?orderId=%@",self.orderID];
+    [paymentWebVw loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]];
+    }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -54,7 +54,6 @@ typedef void(^APIinfoCompletionBlock)(_Nullable id response,NSError *_Nullable e
 
 
 
-
 -(void)GETInfoRequestWithUrlString:(NSString*)urlString userINFO:(User*)user completionBlock:(APIinfoCompletionBlock)block;
 -(void)removeProduct:(NSString*)ShoppingCartItemId withCompletionBlock:(APIinfoCompletionBlock)block;
 

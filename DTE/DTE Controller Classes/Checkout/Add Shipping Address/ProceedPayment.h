@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProceedPayment : UIViewController
+@interface ProceedPayment : BaseClass
+{
+    __weak IBOutlet UIWebView *paymentWebVw;
+
+}
+@property (weak, nonatomic) IBOutlet UIButton *BackAction;
+@property (strong, nonatomic) NSString* orderID;
 
 @end

@@ -10,10 +10,13 @@
 #import "CartItemCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 //#import "SelectAddress.h"
-
+#import "TPKeyboardAvoidingScrollView.h"
 
 @interface ShowCart ()
+{
+    __weak IBOutlet TPKeyboardAvoidingScrollView *mainScroll;
 
+}
 @end
 
 @implementation ShowCart
@@ -21,17 +24,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    arrCartItems = [[GET_DEFAULTS objectForKey:@"cartItems"] mutableCopy];
 
     arrCartItems = [[NSMutableArray alloc] init];
+    [self setUIForTextBox:txtCouponCode];
     [self getCartItems];
+//    mainScroll.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
+
+}
+
+-(void)setUIForTextBox: (UITextField*)text
+{
+    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 15, 20)];
+    text.leftView = paddingView;
+    text.leftViewMode = UITextFieldViewModeAlways;
     
 }
 
-
 -(void)viewWillAppear:(BOOL)animated
 {
-
     tblCartItems.delegate= self;
     tblCartItems.dataSource= self;
     tblCartItems.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -50,9 +60,8 @@
             for (int i=0; i<arrCartItems.count; i++) {
             
             }
-//            strSubTotal = 
+            lblTotalPrice.text= arrCartItems[0][@"TotalPrice"];
             [tblCartItems reloadData];
-
         }
     }];
 
@@ -90,21 +99,21 @@
     
     NSString * reuseID;
     
-    if (indexPath.row ==arrCartItems.count) {
-        reuseID = @"CartItemCell1";
-    }
-    else
+//    if (indexPath.row ==arrCartItems.count) {
+//        reuseID = @"CartItemCell1";
+//    }
+//    else
         reuseID = @"CartItemCell";
 
     CartItemCell *cell = (CartItemCell*)[tableView dequeueReusableCellWithIdentifier:reuseID];
     if (cell== nil) {
         NSArray *nibArray = [[NSBundle mainBundle] loadNibNamed:@"CartItemCell" owner:self options:nil];
 
-        if (indexPath.row ==arrCartItems.count) {
-            cell = [nibArray objectAtIndex:1];
-
-        }
-        else
+//        if (indexPath.row ==arrCartItems.count) {
+//            cell = [nibArray objectAtIndex:1];
+//
+//        }
+//        else
             cell = [nibArray objectAtIndex:0];
         [cell.btnRemove addTarget:self action:@selector(RemoveProduct:) forControlEvents:UIControlEventTouchUpInside];
         [cell.btnRemove setTag:indexPath.row];
@@ -124,13 +133,13 @@
 //
     [cell.imgProduct sd_setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"Placeholder"]];
     }
-    if (arrCartItems.count>0 ) {
-
-    cell.lblTotal.text = @"";
-    cell.lblSubTotal.text = arrCartItems[0][@"TotalPrice"];
-    cell.lblGrandTotal.text = @"";
-    cell.lblSaveAmt.text = @"save amt";
-    }
+//    if (arrCartItems.count>0 ) {
+//
+//    cell.lblTotal.text = @"";
+//    cell.lblSubTotal.text = arrCartItems[0][@"TotalPrice"];
+//    cell.lblGrandTotal.text = @"";
+//    cell.lblSaveAmt.text = @"save amt";
+//    }
     
     return cell;
     
@@ -163,12 +172,16 @@
         height=169;
     }
     else
-        height= 148;
+//        height= 148;
+    height= UITableViewAutomaticDimension;
     return height;
-    
 
 }
 
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 400; // customize the height
+}
 
 - (IBAction)BackAction:(id)sender
 {
@@ -177,6 +190,15 @@
 - (IBAction)SearchProductAction:(id)sender{}
 - (IBAction)CartAction:(id)sender{}
 - (IBAction)SettingsAction:(id)sender{}
+
+- (IBAction)ApplyAction:(id)sender {
+    if (txtCouponCode.text.length) {
+        
+    }
+    lblDiscount.text = @"Discount:- 0%";
+    lblDiscount.hidden = false;
+    constCheckoutTop.constant = constCheckoutTop.constant + 40;
+}
 
 
 - (IBAction)CheckoutAction:(id)sender {
@@ -187,4 +209,6 @@
     [self performSegueWithIdentifier:@"SelectAddress" sender:nil];
     
 }
+
+
 @end

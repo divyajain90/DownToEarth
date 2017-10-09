@@ -12,7 +12,7 @@
 #import "SlideNavigationContorllerAnimatorScale.h"
 #import "SlideNavigationContorllerAnimatorScaleAndFade.h"
 #import "SlideNavigationContorllerAnimatorSlideAndFade.h"
-
+#import "LeftMenuCell.h"
 #import "AppDelegate.h"
 
 NSString *strMenu1 =@"";
@@ -45,26 +45,21 @@ AppDelegate *app;
 
 //    self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.bounds.size.width, 0.01f)];
 
-    self.tableView.backgroundColor = BaseGreenColor;
+    self.tableView.backgroundColor = [UIColor whiteColor];
     [[NSNotificationCenter defaultCenter] addObserver:self.tableView selector:@selector(reloadData) name:@"updateMenu" object:nil];
 }
 
-//-(void)reloadTable
-//{
-//    [self.tableView reloadData ];
-//}
+
 #pragma mark - UITableView Delegate & Datasrouce
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
     if ([[User sharedUser]isLoggedIn]) {
-//        return 7;
        return arrSideMenuLogin.count;
 
     }
    else
-//	return 6;
        return arrSideMenuLogout.count;
 
 }
@@ -82,7 +77,7 @@ AppDelegate *app;
     if ([[User sharedUser]isLoggedIn]) {
 
     if (indexPath.row == 0) {
-        return 80;
+        return 140;
     
     }
     }
@@ -92,23 +87,41 @@ AppDelegate *app;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"leftMenuCell"];
-    cell.textLabel.textColor = [UIColor whiteColor];
-    [cell.imageView setContentMode:UIViewContentModeScaleToFill];
+    UITableViewCell *cell;
 
+    if (indexPath.row == 0) {
+        LeftMenuCell *cell = (LeftMenuCell*)[tableView dequeueReusableCellWithIdentifier:@"leftMenu"];
+        if (cell== nil) {
+            NSArray *nibArray = [[NSBundle mainBundle] loadNibNamed:@"LeftMenuCell" owner:self options:nil];
+            cell = [nibArray objectAtIndex:0];
+            strMenu1 = [@"Hi " stringByAppendingString:[NSString stringWithFormat:@"%@!",[User sharedUser].fName]];
+            cell.lblName.text = strMenu1;
+            cell.lblEmail.text = [[User sharedUser] email];
+            return  cell;
+            
+        }}
+    else{
+
+    cell = [tableView dequeueReusableCellWithIdentifier:@"leftMenuCell"];
+    
+    cell.textLabel.textColor = [UIColor blackColor];
+    [cell.imageView setContentMode:UIViewContentModeScaleToFill];
+    }
     if ([[User sharedUser]isLoggedIn]) {
         switch (indexPath.row)
         {
-            case 0:
-                cell.textLabel.textColor = [UIColor blackColor];
+//            case 0:
                 
-                cell.imageView.image =[UIImage imageNamed:@"Placeholder"]  ;
-                strMenu1 = [@"Hi " stringByAppendingString:[NSString stringWithFormat:@"%@!",[User sharedUser].fName]];
-                cell.textLabel.text = strMenu1;
-                cell.contentView.backgroundColor = [UIColor whiteColor];
-                [cell.imageView setContentMode:UIViewContentModeScaleToFill];
+//                cell.textLabel.textColor = [UIColor blackColor];
                 
-                break;
+//                cell.imageView.image =[UIImage imageNamed:@"Placeholder"]  ;
+//                strMenu1 = [@"Hi " stringByAppendingString:[NSString stringWithFormat:@"%@!",[User sharedUser].fName]];
+//                cell.lblName.text = strMenu1;
+//                cell.lblEmail.text = [[User sharedUser] email];
+//                cell.contentView.backgroundColor = BaseGreenColor;
+//                [cell.imageView setContentMode:UIViewContentModeScaleToFill];
+                
+//                break;
                 
             case 1:
                 cell.textLabel.text = arrSideMenuLogin[1];
@@ -224,7 +237,8 @@ AppDelegate *app;
 	cell.backgroundColor = [UIColor clearColor];
 	
 	return cell;
-}
+    }
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -264,7 +278,7 @@ AppDelegate *app;
                 vc = [GET_STORYBOARD instantiateViewControllerWithIdentifier: @"Description"];
                 break;
             case 7:
-//                app.strSideMenuPage = arrSideMenuLogin[7];
+                app.strSideMenuPage = arrSideMenuLogin[7];
                 
                 vc = [GET_STORYBOARD instantiateViewControllerWithIdentifier: @"Description"];
                 break;

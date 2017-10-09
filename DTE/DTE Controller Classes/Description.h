@@ -16,7 +16,7 @@
     __weak IBOutlet UITextView *txtVwContactUs;
     __weak IBOutlet UITextView *txtVwOrganicFoodCulture;
     __weak IBOutlet UITextView *txtVwQuality;
-    
+    __weak IBOutlet UITextView *txtVwStoreLocations;
 }
 - (IBAction)BackAction:(id)sender;
 
