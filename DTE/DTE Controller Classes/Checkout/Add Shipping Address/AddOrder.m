@@ -8,7 +8,7 @@
 
 #import "AddOrder.h"
 #import "TPKeyboardAvoidingScrollView.h"
-
+#import "ProceedPayment.h"
 @interface AddOrder ()<FPPopupViewDelegate>
 {
     IBOutlet TPKeyboardAvoidingScrollView *mainScroll;
@@ -304,6 +304,10 @@
         if (!error) {
    
             [Utility showMessage:@"Order added successfully" OnView:self.view];
+            ProceedPayment *vc;
+            vc = [GET_STORYBOARD instantiateViewControllerWithIdentifier: @"ProceedPayment"];
+            vc.orderID= response[@"OrderId"];
+            [[SlideNavigationController sharedInstance] pushViewController:vc animated:YES];
     // Response...........
 //            AmountToPay = 710;
 //            OrderGUID = "84d46216-0536-40d6-96ce-951f5a76cceb";

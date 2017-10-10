@@ -13,7 +13,7 @@
     __weak IBOutlet UIWebView *paymentWebVw;
 
 }
-@property (weak, nonatomic) IBOutlet UIButton *BackAction;
 @property (strong, nonatomic) NSString* orderID;
+- (IBAction)BackAction:(id)sender;
 
 @end

@@ -2411,6 +2411,7 @@ Fair Trade</string>
                         <outletCollection property="allTxtFields" destination="Rz9-Di-XJs" id="vW2-WM-rps"/>
                         <outletCollection property="allTxtFields" destination="A76-Hh-BRv" id="s8o-x2-dYT"/>
                         <outletCollection property="allTxtFields" destination="QJa-E8-h78" id="Fq1-CL-xPa"/>
+                        <segue destination="Ouq-fR-mEX" kind="show" id="PiT-IX-7Y5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ClZ-9K-Nz0" sceneMemberID="firstResponder"/>
@@ -2592,7 +2593,7 @@ Fair Trade</string>
         <!--Proceed Payment-->
         <scene sceneID="SWe-lM-OIC">
             <objects>
-                <viewController id="Ouq-fR-mEX" customClass="ProceedPayment" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProceedPayment" id="Ouq-fR-mEX" customClass="ProceedPayment" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cla-TM-0Zq"/>
                         <viewControllerLayoutGuide type="bottom" id="MqX-Nz-FRY"/>
@@ -2601,38 +2602,56 @@ Fair Trade</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mt2-uw-QHg">
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mt2-uw-QHg">
                                 <rect key="frame" x="0.0" y="47" width="320" height="521"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fsJ-QB-n0f">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fsJ-QB-n0f">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pL3-Sx-SQc">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pL3-Sx-SQc">
                                         <rect key="frame" x="10" y="15" width="20" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="UMH-EJ-rAE"/>
+                                            <constraint firstAttribute="width" constant="20" id="Wc1-C1-3HL"/>
+                                        </constraints>
                                         <state key="normal" image="Back">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="BackAction:" destination="Ouq-fR-mEX" eventType="touchUpInside" id="Kpg-60-5xn"/>
+                                        </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lo4-Ma-2SS">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lo4-Ma-2SS">
                                         <rect key="frame" x="102" y="14" width="116" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.066666666669999999" green="0.31372549020000001" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="lo4-Ma-2SS" firstAttribute="top" secondItem="fsJ-QB-n0f" secondAttribute="top" constant="14" id="D1R-So-Kof"/>
+                                    <constraint firstItem="pL3-Sx-SQc" firstAttribute="top" secondItem="fsJ-QB-n0f" secondAttribute="top" constant="15" id="Oca-TG-kHm"/>
+                                    <constraint firstAttribute="height" constant="50" id="asy-93-Rdb"/>
+                                    <constraint firstItem="pL3-Sx-SQc" firstAttribute="leading" secondItem="fsJ-QB-n0f" secondAttribute="leading" constant="10" id="x4Q-hx-2v3"/>
+                                    <constraint firstItem="lo4-Ma-2SS" firstAttribute="centerX" secondItem="fsJ-QB-n0f" secondAttribute="centerX" id="zls-gT-s4Q"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.21176470589999999" green="0.5450980392" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="MqX-Nz-FRY" firstAttribute="top" secondItem="Mt2-uw-QHg" secondAttribute="bottom" id="0Gn-3a-aDC"/>
+                            <constraint firstItem="Mt2-uw-QHg" firstAttribute="top" secondItem="cla-TM-0Zq" secondAttribute="bottom" constant="47" id="6K6-lr-6SW"/>
+                            <constraint firstAttribute="trailing" secondItem="fsJ-QB-n0f" secondAttribute="trailing" id="KXL-oV-Mes"/>
+                            <constraint firstItem="Mt2-uw-QHg" firstAttribute="leading" secondItem="P9l-PN-oP4" secondAttribute="leading" id="iCm-m6-zWz"/>
+                            <constraint firstItem="fsJ-QB-n0f" firstAttribute="top" secondItem="cla-TM-0Zq" secondAttribute="bottom" id="rCe-5q-mlw"/>
+                            <constraint firstItem="fsJ-QB-n0f" firstAttribute="leading" secondItem="P9l-PN-oP4" secondAttribute="leading" id="tce-5S-zkz"/>
+                            <constraint firstAttribute="trailing" secondItem="Mt2-uw-QHg" secondAttribute="trailing" id="zEW-or-spb"/>
+                        </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <outlet property="BackAction" destination="pL3-Sx-SQc" id="gRJ-SU-aju"/>
                         <outlet property="paymentWebVw" destination="Mt2-uw-QHg" id="FZl-Lj-0hy"/>
                     </connections>
                 </viewController>
@@ -2823,6 +2842,7 @@ Fair Trade</string>
                         <outlet property="txtBillingAddress" destination="1q5-Zp-uKO" id="h8o-SE-kCu"/>
                         <outlet property="txtShippingAddress" destination="3Oz-Ms-3eN" id="EVY-Va-X9b"/>
                         <segue destination="EMf-MI-IzF" kind="show" identifier="AddOrderSegue" id="MNB-gi-r5f"/>
+                        <segue destination="Ouq-fR-mEX" kind="show" id="usq-eP-G9y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mNi-xt-4Ch" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2845,5 +2865,6 @@ Fair Trade</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="qfe-Vd-DRN"/>
+        <segue reference="PiT-IX-7Y5"/>
     </inferredMetricsTieBreakers>
 </document>

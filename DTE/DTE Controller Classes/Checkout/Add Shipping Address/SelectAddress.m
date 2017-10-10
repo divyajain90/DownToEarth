@@ -7,7 +7,7 @@
 //
 
 #import "SelectAddress.h"
-
+#import "ProceedPayment.h"
 @interface SelectAddress ()<FPPopupViewDelegate>
 
 @end
@@ -163,7 +163,12 @@ NSUInteger selectedBillingIndex;
         if (!error) {
             
             [Utility showMessage:@"Order added successfully!!" OnView:self.view];
-            GO_BACK;
+            ProceedPayment *vc;
+            vc = [GET_STORYBOARD instantiateViewControllerWithIdentifier: @"ProceedPayment"];
+            vc.orderID= response[@"OrderId"];
+
+            [[SlideNavigationController sharedInstance] pushViewController:vc animated:YES];
+
         }
     }];
 }
